@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 %define 	apxs	/usr/sbin/apxs
-%define		mver	1.99_05
+%define		mver	1.99_08
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	Vestavìný interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -189,7 +189,9 @@ Apache web ·þÎñ³ÌÐò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 
 %build
 perl Makefile.PL \
-	MP_APXS=%{apxs}
+	MP_APXS=%{apxs} \
+	MP_AP_PREFIX=%{_usr} \
+	INSTALLDIRS=vendor
 
 %{__make} \
 	CC="%{__cc}"
@@ -229,18 +231,18 @@ fi
 %attr(755,root,root) %{_libdir}/apache/*.so
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/httpd/httpd.conf/*.conf
 
-%{perl_sitearch}/*.pm
-%{perl_sitearch}/APR
-%{perl_sitearch}/Apache
-%{perl_sitearch}/Apache2
-%{perl_sitearch}/Bundle/*.pm
-%{perl_sitearch}/ModPerl
+%{perl_vendorarch}/*.pm
+%{perl_vendorarch}/APR
+%{perl_vendorarch}/Apache
+%{perl_vendorarch}/Apache2
+%{perl_vendorarch}/Bundle/*.pm
+%{perl_vendorarch}/ModPerl
 
-%dir %{perl_sitearch}/auto/*
-%dir %{perl_sitearch}/auto/*/*
-%{perl_sitearch}/auto/*/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/*/*.so
-%{perl_sitearch}/auto/*/*/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/*/*/*.so
+%dir %{perl_vendorarch}/auto/*
+%dir %{perl_vendorarch}/auto/*/*
+%{perl_vendorarch}/auto/*/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/*/*.so
+%{perl_vendorarch}/auto/*/*/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/*/*/*.so
 
 %{_mandir}/man?/*
