@@ -3,13 +3,14 @@ Summary:	A Perl interpreter for the Apache Web server
 Summary(pl):	Interpreter perla dla serwera WWW Apache
 Name:		apache-mod_perl
 Version:	1.25
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Group(pl):	Sieciowe/Serwery
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
 Patch0:		apache-perl-rh.patch
-Patch1:		apache-perl-IPv6.patch
+# from ftp://ftp.kddlabs.co.jp/Linux/packages/Kondara/pub/Jirai/
+Patch1:		mod_perl-v6.patch
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	perl >= 5.005_03-14
 BuildRequires:	apache-devel
@@ -46,7 +47,7 @@ przyspiesza procesy zwi±zane z uruchamianiem skryptów CGI.
 %prep
 %setup  -q -n mod_perl-%{version}
 %patch0 -p1
-# %patch1 -p1
+%patch1 -p1
 
 %build
 perl Makefile.PL \
