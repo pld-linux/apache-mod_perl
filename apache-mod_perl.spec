@@ -24,7 +24,7 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
 Version:	1.99_17
-Release:	2
+Release:	3
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -50,7 +50,7 @@ BuildRequires:	openldap-devel
 #BuildRequires:	perl-libwww
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 %requires_eq	apache
-%requires_eq	perl-base
+Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
 Requires(post,preun):	%{apxs}
 # What's this for?
 Provides:	perl(mod_perl_hooks)
