@@ -201,7 +201,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir}/apache,/home/httpd/manual/mod}
 
 %{__make} pure_install DESTDIR=$RPM_BUILD_ROOT
-	
+
 install apaci/libperl.so $RPM_BUILD_ROOT%{_libdir}/apache
 install htdocs/manual/mod/mod_perl.html \
 	$RPM_BUILD_ROOT/home/httpd/manual/mod
