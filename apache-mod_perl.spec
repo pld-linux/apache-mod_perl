@@ -24,7 +24,7 @@ Summary(uk):	Модуль вбудовування ╕нтерпретатора Perl в сервер Apache
 Summary(zh_CN):	сцсз Apache web ╥ЧнЯЁлпР╣д Perl ╫БймЁлпР║ё
 Name:		apache-mod_perl
 Version:	1.99_15
-Release:	3
+Release:	4
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -64,6 +64,8 @@ Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
 
 %define		_noautoreqdep	'perl(Apache::.*)' 'perl(mod_perl)'
+%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR)
+%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
 
 %description
 Mod_perl incorporates a Perl interpreter into the Apache web server,
@@ -213,13 +215,12 @@ Apache web ╥ЧнЯЁлпРё╛ ╡╒н╙ Apache ╣д C сОят API лА╧╘цФоР╤тоС╣д Perl
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/apache,/etc/httpd/httpd.conf}
-install -d $RPM_BUILD_ROOT/etc/httpd/httpd.conf/
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name \*.orig -exec rm -f '{}' \;
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/httpd/httpd.conf/75_mod_perl.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_mod_perl.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -242,8 +243,8 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc Changes INSTALL README STATUS
-%attr(755,root,root) %{_libdir}/apache/*.so
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/httpd/httpd.conf/*.conf
+%attr(755,root,root) %{_pkglibdir}/*.so
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd.conf/*.conf
 
 %{perl_vendorarch}/*.pm
 %{perl_vendorarch}/APR
