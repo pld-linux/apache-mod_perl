@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
-%define 	apxs	/usr/sbin/apxs
-%define		mver	1.99_08
+%define	apxs	/usr/sbin/apxs
+%define	snap	20030717
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	Vestavìnı interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -22,17 +22,19 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒĞÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·şÎñ³ÌĞòµÄ Perl ½âÊÍ³ÌĞò¡£
 Name:		apache-mod_perl
 Version:	2.0
-Release:	1.%{mver}
+Release:	1.%{snap}.0
 License:	GPL
 Group:		Networking/Daemons
-Source0:	http://perl.apache.org/dist/mod_perl-%{version}-current.tar.gz
+#Source0:	http://perl.apache.org/dist/mod_perl-%{version}-current.tar.gz
+Source0:	http://radek.karnet.pl/pld/modperl-%{version}_%{snap}.tar.bz2
 # Source0-md5:	475a62af71425e71552f0062ee6b8d6f
 Source1:	%{name}.conf
+Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	gdbm-devel
-BuildRequires:	perl >= 5.6.1
+BuildRequires:	perl-devel >= 5.6.1
 BuildRequires:	perl-B-Graph
 BuildRequires:	perl-BSD-Resource
 BuildRequires:	perl-Devel-Symdump
@@ -43,6 +45,7 @@ BuildRequires:	perl-libwww
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 PreReq:		apache >= 2.0.0
 %requires_eq	apache
+%requires_eq	perl-base
 Requires(post,preun):	%{apxs}
 Provides:	perl(mod_perl_hooks)
 Provides:	mod_perl
@@ -186,10 +189,11 @@ Apache web ·şÎñ³ÌĞò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 ½Å±¾»Ø×ª¹ı³Ì¸üÎª¿ìËÙ¡£
 
 %prep
-%setup  -q -n mod_perl-%{mver}
+%setup  -q -n modperl-%{version}
+%patch0 -b .orig -p0
 
 %build
-perl Makefile.PL \
+%{__perl} Makefile.PL \
 	MP_APXS=%{apxs} \
 	MP_AP_PREFIX=%{_usr} \
 	INSTALLDIRS=vendor
