@@ -23,13 +23,13 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
 Version:	2.0.0
-%define	_rc	RC1
-Release:	0.%{_rc}.2
+%define	_rc	RC2-XMas
+Release:	0.%(echo %{_rc} | tr - _).1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}-%{_rc}.tar.gz
-# Source0-md5:	6b3453396263cf0cdd3ae433eeadbedf
+# Source0-md5:	efeec9c467f1f1fb4a3f11652ce4d2ad
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
@@ -38,6 +38,7 @@ BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel
+BuildRequires:	perl-devel >= 1:5.8.2
 # These modules aren't needed?
 #BuildRequires:	perl-B-Graph
 #BuildRequires:	perl-BSD-Resource
