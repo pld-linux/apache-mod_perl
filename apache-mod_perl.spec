@@ -42,14 +42,13 @@ BuildRequires:	perl-URI
 BuildRequires:	perl-libwww
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	%{apxs}
-Prereq:		%{_sbindir}/apxs
-Prereq:		apache(EAPI)
+PreReq:		apache(EAPI)
+Requires(post,preun):	%{apxs}
 Provides:	perl(mod_perl_hooks)
 Provides:	mod_perl
 Obsoletes:	mod_perl
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Mod_perl incorporates a Perl interpreter into the Apache web server,
@@ -196,7 +195,8 @@ perl Makefile.PL \
 (cd apaci; ln -s ../src/modules .; chmod +x find_source)
 %{__make}
 
-(cd faq; make)
+cd faq
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
