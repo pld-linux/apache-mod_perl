@@ -34,14 +34,15 @@ URL:		http://perl.apache.org/
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	apr-util-devel
+BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
-BuildRequires:	perl-devel >= 5.6.1
 BuildRequires:	perl-B-Graph
 BuildRequires:	perl-BSD-Resource
 BuildRequires:	perl-Devel-Symdump
 BuildRequires:	perl-HTML-Parser
 BuildRequires:	perl-MIME-Base64
 BuildRequires:	perl-URI
+BuildRequires:	perl-devel >= 5.6.1
 BuildRequires:	perl-libwww
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 PreReq:		apache >= 2.0.0
