@@ -27,7 +27,7 @@ License:	GPL
 Group:		Networking/Daemons
 #Source0:	http://perl.apache.org/dist/mod_perl-%{version}-current.tar.gz
 Source0:	http://radek.karnet.pl/pld/modperl-%{version}_%{snap}.tar.bz2
-# Source0-md5:	475a62af71425e71552f0062ee6b8d6f
+# Source0-md5:	af7904192118f7a8aec0d3bd245e4d15
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
@@ -207,8 +207,7 @@ install -d $RPM_BUILD_ROOT{%{_libdir}/apache,/etc/httpd/httpd.conf}
 install -d $RPM_BUILD_ROOT/etc/httpd/httpd.conf/
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	MODPERL_AP_LIBEXECDIR=$RPM_BUILD_ROOT%{_libdir}/apache
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/httpd/httpd.conf/75_mod_perl.conf
 
@@ -239,15 +238,20 @@ fi
 %{perl_vendorarch}/*.pm
 %{perl_vendorarch}/APR
 %{perl_vendorarch}/Apache
-%{perl_vendorarch}/Apache2
-%{perl_vendorarch}/Bundle/*.pm
 %{perl_vendorarch}/ModPerl
 
 %dir %{perl_vendorarch}/auto/*
-%dir %{perl_vendorarch}/auto/*/*
 %{perl_vendorarch}/auto/*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/*/*.so
+%dir %{perl_vendorarch}/auto/APR/[B-U]*
+%dir %{perl_vendorarch}/auto/Apache/[A-U]*
+%dir %{perl_vendorarch}/auto/ModPerl/*
+%{perl_vendorarch}/auto/*/*/*.ix
 %{perl_vendorarch}/auto/*/*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/*/*/*.so
 
-%{_mandir}/man?/*
+%{perl_vendorarch}/auto/Apache/typemap
+# to -devel?  directory ownership problem...
+%{_includedir}/apache/*.h
+
+%{_mandir}/man?/[^B]*
