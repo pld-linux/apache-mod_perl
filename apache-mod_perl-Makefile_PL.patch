@@ -1,7 +1,7 @@
-diff -urN modperl-2.0.org/lib/Apache/Build.pm modperl-2.0/lib/Apache/Build.pm
---- modperl-2.0.org/lib/Apache/Build.pm	2003-10-07 01:41:09.000000000 +0200
-+++ modperl-2.0/lib/Apache/Build.pm	2003-10-07 01:43:07.000000000 +0200
-@@ -1199,12 +1199,12 @@
+diff -urN mod_perl-1.99_13-org/lib/Apache/Build.pm mod_perl-1.99_13/lib/Apache/Build.pm
+--- mod_perl-1.99_13-org/lib/Apache/Build.pm	2004-03-04 18:24:32.000000000 +0100
++++ mod_perl-1.99_13/lib/Apache/Build.pm	2004-04-07 15:56:14.946043880 +0200
+@@ -1307,12 +1307,12 @@
      my $install = <<'EOI';
  install:
  # install mod_perl.so
@@ -18,19 +18,19 @@ diff -urN modperl-2.0.org/lib/Apache/Build.pm modperl-2.0/lib/Apache/Build.pm
  EOI
  
      my $mf = $self->default_file('makefile');
-diff -urN modperl-2.0.org/Makefile.PL modperl-2.0/Makefile.PL
---- modperl-2.0.org/Makefile.PL	2003-10-07 01:41:09.000000000 +0200
-+++ modperl-2.0/Makefile.PL	2003-10-07 01:42:08.000000000 +0200
-@@ -62,7 +62,7 @@
- ModPerl::BuildMM::WriteMakefile(
-     NAME      => 'mod_perl',
-     VERSION   => $VERSION,
--    EXE_FILES => \@exe_files,
-+#    EXE_FILES => \@exe_files,
-     DEFINE    => get_DEFINE(),
-     macro     => {
+diff -urN mod_perl-1.99_13-org/Makefile.PL mod_perl-1.99_13/Makefile.PL
+--- mod_perl-1.99_13-org/Makefile.PL	2004-03-04 18:24:28.000000000 +0100
++++ mod_perl-1.99_13/Makefile.PL	2004-04-07 15:57:14.828940296 +0200
+@@ -65,7 +65,7 @@
+     NAME          => 'mod_perl',
+     VERSION       => $VERSION,
+     ABSTRACT_FROM => 'lib/mod_perl.pm',
+-    EXE_FILES     => \@exe_files,
++#    EXE_FILES     => \@exe_files,
+     DEFINE        => get_DEFINE(),
+     macro         => {
          MODPERL_SRC        => $code->path,
-@@ -456,8 +456,8 @@
+@@ -483,8 +483,8 @@
  	cd "$(MODPERL_SRC)" && $(MODPERL_LIBMAKE) install
  
  modperl_xs_h_install:
