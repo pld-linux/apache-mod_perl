@@ -1,7 +1,8 @@
 # TODO:
 # - add devel subpackage
 %include	/usr/lib/rpm/macros.perl
-%define 	apxs	/usr/sbin/apxs
+%bcond_with	apache1 # use apache1 instead of apache
+%define	apxs	/usr/sbin/apxs%{?with_apache1:1}
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	Vestavìný interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -191,7 +192,8 @@ perl Makefile.PL \
 	USE_APXS=1 \
 	WITH_APXS=%{apxs} \
 	EVERYTHING=1 \
-	PERL_STACKED_HANDLERS=1
+	PERL_STACKED_HANDLERS=1 \
+	INSTALLDIRS=vendor
 
 (cd apaci; ln -s ../src/modules .; chmod +x find_source)
 %{__make}
@@ -236,22 +238,31 @@ fi
 
 %attr(755,root,root) %{_libdir}/apache/*.so
 
-%{perl_sitearch}/*.pm
-%{perl_sitearch}/*.PL
+#%{perl_sitearch}/*.pm
+#%{perl_sitearch}/*.PL
 
-%dir %{perl_sitearch}/Apache
-%{perl_sitearch}/Apache/*.pm
-%{perl_sitearch}/Apache/Constants
-%dir %{perl_sitearch}/auto/Apache
-%dir %{perl_sitearch}/auto/Apache/Leak
-%dir %{perl_sitearch}/auto/Apache/Symbol
+%dir %{perl_vendorarch}/Apache
+%dir %{perl_vendorarch}/auto/Apache
+%dir %{perl_vendorarch}/auto/Apache/Leak
+%dir %{perl_vendorarch}/auto/Apache/Symbol
+%{perl_vendorarch}/Apache.pm
+%{perl_vendorarch}/Apache/*.pm
+%{perl_vendorarch}/Apache/Constants
 
-%{perl_sitearch}/auto/*/*/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/*/*/*.so
+%attr(755,root,root) %{perl_vendorarch}/auto/Apache/Leak/Leak.so
+%attr(755,root,root) %{perl_vendorarch}/auto/Apache/Symbol/Symbol.so
+
+%{perl_vendorarch}/auto/Apache/Leak/Leak.bs
+%{perl_vendorarch}/auto/Apache/Symbol/Symbol.bs
+
+%{perl_vendorarch}/*.pm
+
+
+#%{perl_sitearch}/auto/*/*/*.bs
 
 %{_mandir}/man3/[Acm]*
 
 # to -devel ?
-%{perl_sitearch}/auto/Apache/typemap
-%{perl_sitearch}/auto/Apache/mod_perl.exp
-%{perl_sitearch}/auto/Apache/include
+#%{perl_sitearch}/auto/Apache/typemap
+#%{perl_sitearch}/auto/Apache/mod_perl.exp
+#%{perl_sitearch}/auto/Apache/include
