@@ -61,6 +61,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
 
+%define		_noautoreqdep	'perl(Apache.*)'
+
 %description
 Mod_perl incorporates a Perl interpreter into the Apache web server,
 so that the Apache web server can directly execute Perl code. Mod_perl
@@ -212,7 +214,7 @@ install -d $RPM_BUILD_ROOT/etc/httpd/httpd.conf/
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
+find $RPM_BUILD_ROOT -name \*.orig -exec rm -f '{}' \;
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/httpd/httpd.conf/75_mod_perl.conf
 
 %clean
