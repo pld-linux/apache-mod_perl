@@ -3,7 +3,7 @@ Summary:	A Perl interpreter for the Apache Web server
 Summary(pl):	Interpreter perla dla serwera WWW Apache
 Name:		apache-mod_perl
 Version:	1.25
-Release:	4
+Release:	5
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
@@ -104,7 +104,6 @@ fi
 
 %{perl_sitearch}/Apache/*.pm
 %{perl_sitearch}/Apache/Constants
-%{perl_sitearch}/Bundle/*.pm
 %{perl_sitearch}/auto/mod_perl
 %dir %{perl_sitearch}/auto/Apache/Leak
 %dir %{perl_sitearch}/auto/Apache/Symbol
@@ -112,4 +111,4 @@ fi
 %{perl_sitearch}/auto/*/*/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/*/*/*.so
 
-%{_mandir}/man3/*
+%{_mandir}/man3/[Acm]*
