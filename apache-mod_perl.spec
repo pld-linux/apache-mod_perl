@@ -23,14 +23,14 @@ Summary(sv):	En inbyggd Perl-interpretator fЖr webbservern Apache
 Summary(uk):	Модуль вбудовування ╕нтерпретатора Perl в сервер Apache
 Summary(zh_CN):	сцсз Apache web ╥ЧнЯЁлпР╣д Perl ╫БймЁлпР║ё
 Name:		apache-mod_perl
-Version:	1.99_13
-Release:	4
+Version:	1.99_14
+Release:	1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
 #Source0:	modperl-%{version}_%{snap}.tar.bz2
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-# Source0-md5:	e8945611cae2fe797ae4bb198c0285b6
+# Source0-md5:	116dce5c909701b3812ae4ad6d91c6bd
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
@@ -205,9 +205,11 @@ Apache web ╥ЧнЯЁлпРё╛ ╡╒н╙ Apache ╣д C сОят API лА╧╘цФоР╤тоС╣д Perl
 %{__perl} Makefile.PL \
 	MP_APXS=%{apxs} \
 	INSTALLDIRS=vendor \
-	MP_CCOPTS="%{rpmcflags} -I/usr/include/apache `apu-config --includes`" 
+	MP_CCOPTS="-I/usr/include/apache `apu-config --includes`" 
 
 %{__make} \
+	OPTIMIZE="%{rpmcflags}" \
+	MODPERL_OPTIMIZE="%{rpmcflags}" \
 	CC="%{__cc}" \
 	MP_APXS=%{apxs}
 
