@@ -3,7 +3,7 @@ Summary:	A Perl interpreter for the Apache Web server
 Summary(pl):	Interpreter perla dla serwera WWW Apache
 Name:		apache-mod_perl
 Version:	1.25
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Daemons
 Group(pl):	Sieciowe/Serwery
@@ -61,13 +61,13 @@ perl Makefile.PL \
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/apache,/home/httpd/html/manual/mod}
+install -d $RPM_BUILD_ROOT{%{_libdir}/apache,/home/httpd/manual/mod}
 
 %{__make} pure_install DESTDIR=$RPM_BUILD_ROOT
 	
 install -m 755 apaci/libperl.so $RPM_BUILD_ROOT%{_libdir}/apache
 install htdocs/manual/mod/mod_perl.html \
-	$RPM_BUILD_ROOT/home/httpd/html/manual/mod
+	$RPM_BUILD_ROOT/home/httpd/manual/mod
 
 find $RPM_BUILD_ROOT -name \*.so -exec strip --strip-unneeded {} \;
 
@@ -88,20 +88,23 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/apxs -e -a -n perl %{_libexecdir}/libperl.so 1>&2
 if [ -f /var/lock/subsys/httpd ]; then
    /etc/rc.d/init.d/httpd restart 1>&2
+else
+	echo "Run \"/etc/rc.d/init.d/httpd start\" to start apache http daemon."
 fi
 
 %preun
-%{_sbindir}/apxs -e -A -n perl %{_libexecdir}/libperl.so 1>&2
-
-if [ -f /var/lock/subsys/httpd ]; then
-	/etc/rc.d/init.d/httpd stop 1>&2
+if [ "$1" = "0" ]; then
+	%{_sbindir}/apxs -e -A -n perl %{_libexecdir}/libperl.so 1>&2
+	if [ -f /var/lock/subsys/httpd ]; then
+		/etc/rc.d/init.d/httpd stop 1>&2
+	fi
 fi
 
 
 %files
 %defattr(644,root,root,755)
 %doc {README,INSTALL,ToDo}.gz faq/*.html apache-modlist.html eg
-%doc /home/httpd/html/manual/mod/*html
+%doc /home/httpd/manual/mod/*html
 
 %attr(755,root,root) %{_libdir}/apache/*.so
 
