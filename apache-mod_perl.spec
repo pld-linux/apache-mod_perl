@@ -22,8 +22,6 @@ BuildRequires:	perl-BSD-Resource
 BuildRequires:	perl-B-Graph
 BuildRequires:	perl-Devel-Symdump
 BuildRequires:	perl-URI
-%requires_eq	perl
-Requires:	%{perl_sitearch}
 Requires:	apache
 Provides:	perl(mod_perl_hooks)
 Provides:	mod_perl
