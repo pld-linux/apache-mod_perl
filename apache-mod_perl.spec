@@ -29,6 +29,7 @@ Source0:	http://perl.apache.org/dist/mod_perl-%{version}-current.tar.gz
 # Source0-md5:	475a62af71425e71552f0062ee6b8d6f
 Source1:	%{name}.conf
 URL:		http://perl.apache.org/
+BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	gdbm-devel
 BuildRequires:	perl >= 5.6.1
@@ -40,20 +41,19 @@ BuildRequires:	perl-MIME-Base64
 BuildRequires:	perl-URI
 BuildRequires:	perl-libwww
 BuildRequires:	rpm-perlprov >= 3.0.3-16
-BuildRequires:	%{apxs}
 PreReq:		apache >= 2.0.0
 %requires_eq	apache
 Requires(post,preun):	%{apxs}
 Provides:	perl(mod_perl_hooks)
 Provides:	mod_perl
-Obsoletes:	mod_perl
-Obsoletes:	mod_perl-common
 # bugs in rpm perl dependency finder?
 Provides:	perl(Apache::FunctionTable)
 Provides:	perl(Apache::StructureTable)
 Provides:	perl(Apache::TestConfigParse)
 Provides:	perl(Apache::TestConfigPerl)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	mod_perl
+Obsoletes:	mod_perl-common
 
 %description
 Mod_perl incorporates a Perl interpreter into the Apache web server,
