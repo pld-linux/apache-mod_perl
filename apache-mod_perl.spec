@@ -33,6 +33,7 @@ Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.0
+BuildRequires:	apr-util-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	perl-devel >= 5.6.1
 BuildRequires:	perl-B-Graph
@@ -197,6 +198,8 @@ Apache web 服务程序， 并为 Apache 的 C 语言 API 提供面向对象的 Perl
 	MP_APXS=%{apxs} \
 	MP_AP_PREFIX=%{_usr} \
 	INSTALLDIRS=vendor
+
+find . -name 'Makefile*' -exec perl -pi -e "s#-I%{_includedir}/apache#-I%{_includedir}/apache $(apu-config --includes)#g" "{}" ";"
 
 %{__make} \
 	CC="%{__cc}"
