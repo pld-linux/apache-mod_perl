@@ -1,0 +1,31 @@
+--- mod_perl-1.24/src/modules/perl/Connection.xs.v6	Tue Apr 11 09:49:19 2000
++++ mod_perl-1.24/src/modules/perl/Connection.xs	Fri Nov  3 08:29:29 2000
+@@ -78,7 +78,7 @@
+     RETVAL = newSVpv((char *)&conn->remote_addr,
+                       sizeof conn->remote_addr);
+     if(sv_addr) {
+-        struct sockaddr_in addr; 
++        struct sockaddr_storage addr; 
+         STRLEN sockaddrlen; 
+         char * new_addr = SvPV(sv_addr,sockaddrlen); 
+         if (sockaddrlen != sizeof(addr)) { 
+@@ -106,7 +106,18 @@
+ #else
+         conn->remote_ip = pstrdup(conn->pool, (char *)SvPV(ST(1),na));
+ #endif
+-        conn->remote_addr.sin_addr.s_addr = inet_addr(conn->remote_ip);
++	switch(conn->remote_addr.ss_family)
++	{
++		case AF_INET:
++			inet_pton(AF_INET, conn->remote_ip, ((struct sockaddr_in*)&conn->remote_addr)->sin_addr.s_addr);
++			break;
++		case AF_INET6:
++			inet_pton(AF_INET6, conn->remote_ip, ((struct sockaddr_in6*)&conn->remote_addr)->sin6_addr.s6_addr);
++			break;
++		default:
++			croak("Apache doesn't support this address family\n");
++			break;
++        }
+     }
+ 
+     OUTPUT:
