@@ -208,8 +208,6 @@ install apaci/libperl.so $RPM_BUILD_ROOT%{_libdir}/apache
 install htdocs/manual/mod/mod_perl.html \
 	$RPM_BUILD_ROOT/home/httpd/manual/mod
 
-gzip -9nf README INSTALL ToDo
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -232,7 +230,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz faq/*.html apache-modlist.html eg
+%doc README INSTALL ToDo faq/*.html apache-modlist.html eg
 %doc /home/httpd/manual/mod/*html
 
 %attr(755,root,root) %{_libdir}/apache/*.so
