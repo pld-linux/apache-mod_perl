@@ -14,7 +14,7 @@ Summary(is):	Perl túlkur fyrir Apache vefşjóninn
 Summary(it):	Interprete Perl integrato per il server Web Apache
 Summary(ja):	Apache Web ¥µ¡¼¥Ğ¡¼ÍÑ¤ÎÁÈ¹ş¤ß Perl ¥¤¥ó¥¿¡¼¥×¥ê¥¿
 Summary(nb):	En Perl-fortolker for webtjeneren Apache
-Summary(pl):	Interpreter perla dla serwera WWW Apache
+Summary(pl):	Interpreter Perla dla serwera WWW Apache
 Summary(pt):	Um interpretador de Perl embebido para o servidor Web Apache
 Summary(ru):	÷ÓÔÒÏÅÎÎÙÊ ÉÎÔÅÒĞÒÅÔÁÔÏÒ Perl ÄÌÑ WWW-ÓÅÒ×ÅÒÁ Apache
 Summary(sk):	Interpreter jazyka Perl pre webovı server Apache
@@ -142,7 +142,7 @@ CGI ¥¹¥¯¥ê¥×¥È¤Î¥¿¡¼¥ó¥¢¥é¥¦¥ó¥É¥×¥í¥»¥¹¤¬Â®¤¯¤Ê¤ê¤Ş¤¹¡£
 
 %description -l pl
 Mod_perl jest modu³em, który wyposa¿a serwer Apache w interpreter
-perla, umo¿liwiaj±c w ten sposób bezpo¶rednie wykonywanie kodu perla
+Perla, umo¿liwiaj±c w ten sposób bezpo¶rednie wykonywanie kodu Perla
 przez serwer bez potrzeby anga¿owania zewnêtrznego interpretera, co
 przyspiesza procesy zwi±zane z uruchamianiem skryptów CGI.
 
