@@ -23,7 +23,7 @@ Summary(uk):	Модуль вбудовування ╕нтерпретатора Perl в сервер Apache
 Summary(zh_CN):	сцсз Apache web ╥ЧнЯЁлпР╣д Perl ╫БймЁлпР║ё
 Name:		apache-mod_perl
 Version:	1.26
-Release:	6
+Release:	7
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
@@ -200,7 +200,8 @@ perl Makefile.PL \
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/apache,/home/httpd/manual/mod}
+install -d $RPM_BUILD_ROOT{%{_libdir}/apache,/home/httpd/manual/mod} \
+	RPM_BUILD_ROOT%{perl_sitelib}/Apache
 
 %{__make} pure_install DESTDIR=$RPM_BUILD_ROOT
 
@@ -238,9 +239,12 @@ fi
 %{perl_sitearch}/*.pm
 %{perl_sitearch}/*.PL
 
+%dir %{perl_sitelib}/Apache
+%dir %{perl_sitearch}/Apache
 %{perl_sitearch}/Apache/*.pm
 %{perl_sitearch}/Apache/Constants
 %{perl_sitearch}/auto/mod_perl
+%dir %{perl_sitearch}/auto/Apache
 %dir %{perl_sitearch}/auto/Apache/Leak
 %dir %{perl_sitearch}/auto/Apache/Symbol
 
