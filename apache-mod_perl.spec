@@ -24,13 +24,12 @@ Summary(zh_CN):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 Version:	2.0.0
 %define	_rc	RC1
-Release:	0.%{_rc}.1
+Release:	0.%{_rc}.2
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
-#Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-Source0:	http://www.apache.org/~gozer/mp2/mod_perl-2.0.0/mod_perl-%{version}-%{_rc}.tar.gz
-# Source0-md5:	d069e5d442ae7d75cd4a366fb65ab125
+Source0:	http://perl.apache.org/dist/mod_perl-%{version}-%{_rc}.tar.gz
+# Source0-md5:	6b3453396263cf0cdd3ae433eeadbedf
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
