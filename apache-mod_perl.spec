@@ -1,3 +1,5 @@
+# TODO:
+# - add devel subpackage
 %include	/usr/lib/rpm/macros.perl
 %define 	apxs	/usr/sbin/apxs
 Summary:	A Perl interpreter for the Apache Web server
@@ -21,7 +23,7 @@ Summary(uk):	Модуль вбудовування ╕нтерпретатора Perl в сервер Apache
 Summary(zh_CN):	сцсз Apache web ╥ЧнЯЁлпР╣д Perl ╫БймЁлпР║ё
 Name:		apache-mod_perl
 Version:	1.26
-Release:	4
+Release:	5
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
@@ -248,3 +250,8 @@ fi
 %attr(755,root,root) %{perl_sitearch}/auto/*/*/*.so
 
 %{_mandir}/man3/[Acm]*
+
+# to -devel ?
+%{perl_sitearch}/auto/Apache/typemap
+%{perl_sitearch}/auto/Apache/mod_perl.exp
+%{perl_sitearch}/auto/Apache/include
