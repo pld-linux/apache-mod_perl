@@ -26,6 +26,7 @@ Release:	1.%{mver}
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}-current.tar.gz
+# Source0-md5:	475a62af71425e71552f0062ee6b8d6f
 Source1:	%{name}.conf
 URL:		http://perl.apache.org/
 BuildRequires:	apache-devel >= 2.0.0
