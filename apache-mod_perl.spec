@@ -1,7 +1,6 @@
-# TODO:
-# - add devel subpackage
 %include	/usr/lib/rpm/macros.perl
 %define 	apxs	/usr/sbin/apxs
+%define		mver	1.99_05
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	Vestavìný interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -22,15 +21,14 @@ Summary(sv):	En inbyggd Perl-interpretator för webbservern Apache
 Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
-Version:	1.27
-Release:	2
+Version:	2.0
+Release:	1.%{mver}
 License:	GPL
 Group:		Networking/Daemons
-Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-Patch0:		apache-perl-rh.patch
-# from ftp://ftp.kddlabs.co.jp/Linux/packages/Kondara/pub/Jirai/
-Patch1:		mod_perl-v6.patch
-BuildRequires:	apache(EAPI)-devel
+Source0:	http://perl.apache.org/dist/mod_perl-%{version}-current.tar.gz
+Source1:	%{name}.conf
+URL:		http://perl.apache.org/
+BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	gdbm-devel
 BuildRequires:	perl >= 5.6.1
 BuildRequires:	perl-B-Graph
@@ -42,12 +40,18 @@ BuildRequires:	perl-URI
 BuildRequires:	perl-libwww
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	%{apxs}
-PreReq:		apache(EAPI)
+PreReq:		apache >= 2.0.0
+%requires_eq	apache
 Requires(post,preun):	%{apxs}
 Provides:	perl(mod_perl_hooks)
 Provides:	mod_perl
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
+# bugs in rpm perl dependency finder?
+Provides:	perl(Apache::FunctionTable)
+Provides:	perl(Apache::StructureTable)
+Provides:	perl(Apache::TestConfigParse)
+Provides:	perl(Apache::TestConfigPerl)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -181,38 +185,30 @@ Apache web ·þÎñ³ÌÐò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 ½Å±¾»Ø×ª¹ý³Ì¸üÎª¿ìËÙ¡£
 
 %prep
-%setup  -q -n mod_perl-%{version}
-%patch0 -p1
-%patch1 -p1
+%setup  -q -n mod_perl-%{mver}
 
 %build
 perl Makefile.PL \
-	USE_APXS=1 \
-	WITH_APXS=%{apxs} \
-	EVERYTHING=1 \
-	PERL_STACKED_HANDLERS=1
+	MP_APXS=%{apxs}
 
-(cd apaci; ln -s ../src/modules .; chmod +x find_source)
-%{__make}
-
-cd faq
-%{__make}
+%{__make} \
+	CC="%{__cc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/apache,/home/httpd/manual/mod}
+install -d $RPM_BUILD_ROOT{%{_libdir}/apache,/etc/httpd/httpd.conf}
+install -d $RPM_BUILD_ROOT/etc/httpd/httpd.conf/
 
-%{__make} pure_install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	MODPERL_AP_LIBEXECDIR=$RPM_BUILD_ROOT%{_libdir}/apache
 
-install apaci/libperl.so $RPM_BUILD_ROOT%{_libdir}/apache
-install htdocs/manual/mod/mod_perl.html \
-	$RPM_BUILD_ROOT/home/httpd/manual/mod
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/httpd/httpd.conf/75_mod_perl.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%{apxs} -e -a -n perl %{_libexecdir}/libperl.so 1>&2
 if [ -f /var/lock/subsys/httpd ]; then
 	/etc/rc.d/init.d/httpd restart 1>&2
 else
@@ -221,7 +217,6 @@ fi
 
 %preun
 if [ "$1" = "0" ]; then
-	%{apxs} -e -A -n perl %{_libexecdir}/libperl.so 1>&2
 	if [ -f /var/lock/subsys/httpd ]; then
 		/etc/rc.d/init.d/httpd restart 1>&2
 	fi
@@ -230,27 +225,22 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README INSTALL CREDITS faq/*.html faq/*.txt apache-modlist.html eg
-%doc /home/httpd/manual/mod/*html
-
+%doc Changes INSTALL README STATUS
 %attr(755,root,root) %{_libdir}/apache/*.so
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/httpd/httpd.conf/*.conf
 
 %{perl_sitearch}/*.pm
-%{perl_sitearch}/*.PL
+%{perl_sitearch}/APR
+%{perl_sitearch}/Apache
+%{perl_sitearch}/Apache2
+%{perl_sitearch}/Bundle/*.pm
+%{perl_sitearch}/ModPerl
 
-%dir %{perl_sitearch}/Apache
-%{perl_sitearch}/Apache/*.pm
-%{perl_sitearch}/Apache/Constants
-%dir %{perl_sitearch}/auto/Apache
-%dir %{perl_sitearch}/auto/Apache/Leak
-%dir %{perl_sitearch}/auto/Apache/Symbol
-
+%dir %{perl_sitearch}/auto/*
+%dir %{perl_sitearch}/auto/*/*
+%{perl_sitearch}/auto/*/*.bs
+%attr(755,root,root) %{perl_sitearch}/auto/*/*.so
 %{perl_sitearch}/auto/*/*/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/*/*/*.so
 
-%{_mandir}/man3/[Acm]*
-
-# to -devel ?
-%{perl_sitearch}/auto/Apache/typemap
-%{perl_sitearch}/auto/Apache/mod_perl.exp
-%{perl_sitearch}/auto/Apache/include
+%{_mandir}/man?/*
