@@ -1,0 +1,3 @@
+- added %%{apxs} local macro to avoid adapter problems
+- fix use of %%{apxs} and %%{_sbindir}/apxs
+- added BR %%{apxs} and Prereq %%{_sbindir}/apxs (if necessary); removed BR apache
