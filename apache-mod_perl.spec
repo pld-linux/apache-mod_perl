@@ -57,6 +57,8 @@ Provides:	perl-Apache-Test
 # bugs in rpm perl dependency finder?
 Provides:       perl(Apache::FunctionTable)
 Provides:       perl(Apache::StructureTable)
+# to be resolved:
+BuildConflicts:	apache1-mod_perl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
