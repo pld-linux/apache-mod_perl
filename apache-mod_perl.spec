@@ -26,6 +26,7 @@ Version:	1.27
 Release:	2
 License:	GPL
 Group:		Networking/Daemons
+URL:		http://perl.apache.org
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
 Patch0:		apache-perl-rh.patch
 # from ftp://ftp.kddlabs.co.jp/Linux/packages/Kondara/pub/Jirai/
