@@ -24,20 +24,6 @@ Version:	1.26
 Release:	4
 License:	GPL
 Group:		Networking/Daemons
-Group(cs):	Sí»ové/Démoni
-Group(da):	Netværks/Dæmoner
-Group(de):	Netzwerkwesen/Server
-Group(es):	Red/Servidores
-Group(fr):	Réseau/Serveurs
-Group(is):	Net/Púkar
-Group(it):	Rete/Demoni
-Group(no):	Nettverks/Daemoner
-Group(pl):	Sieciowe/Serwery
-Group(pt):	Rede/Servidores
-Group(ru):	óÅÔØ/äÅÍÏÎÙ
-Group(sl):	Omre¾ni/Stre¾niki
-Group(sv):	Nätverk/Demoner
-Group(uk):	íÅÒÅÖÁ/äÅÍÏÎÉ
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
 Patch0:		apache-perl-rh.patch
 # from ftp://ftp.kddlabs.co.jp/Linux/packages/Kondara/pub/Jirai/
