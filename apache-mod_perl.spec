@@ -198,13 +198,12 @@ Apache web 服务程序， 并为 Apache 的 C 语言 API 提供面向对象的 Perl
 %build
 %{__perl} Makefile.PL \
 	MP_APXS=%{apxs} \
-	INSTALLDIRS=vendor
-
-find . -name 'Makefile*' -exec perl -pi -e \
-"s#-I/usr/include/apache#-I/usr/include/apache $(apu-config --includes)#g" "{}" ";"
+	INSTALLDIRS=vendor \
+	MP_CCOPTS="%{rpmcflags} -I/usr/include/apache `apu-config --includes`" 
 
 %{__make} \
-	CC="%{__cc}"
+	CC="%{__cc}" \
+	MP_APXS=%{apxs}
 
 %install
 rm -rf $RPM_BUILD_ROOT
