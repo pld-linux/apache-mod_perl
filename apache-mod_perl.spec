@@ -2,7 +2,6 @@
 # - separate perl-things from apache libs and configs (needed for some buildings)
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
-# %define	snap	20031007
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	Vestavìnı interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -23,25 +22,23 @@ Summary(sv):	En inbyggd Perl-interpretator för webbservern Apache
 Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒĞÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·şÎñ³ÌĞòµÄ Perl ½âÊÍ³ÌĞò¡£
 Name:		apache-mod_perl
-Version:	1.99_17
-Release:	4
+Version:	2.0.0
+%define	_rc	RC1
+Release:	0.%{_rc}.1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
-#Source0:	modperl-%{version}_%{snap}.tar.bz2
-Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-# Source0-md5:	ffb9d5c825b93d91e6c3a8885f7d5296
+#Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
+Source0:	http://www.apache.org/~gozer/mp2/mod_perl-2.0.0/mod_perl-%{version}-%{_rc}.tar.gz
+# Source0-md5:	d069e5d442ae7d75cd4a366fb65ab125
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
-Patch1:		%{name}-pm_to_blib.patch
 URL:		http://perl.apache.org/
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel
-# forced by pm_to_blib.patch
-BuildRequires:	perl-ExtUtils-MakeMaker >= 6.22
 # These modules aren't needed?
 #BuildRequires:	perl-B-Graph
 #BuildRequires:	perl-BSD-Resource
@@ -202,9 +199,8 @@ Apache web ·şÎñ³ÌĞò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 ½Å±¾»Ø×ª¹ı³Ì¸üÎª¿ìËÙ¡£
 
 %prep
-%setup -q -n mod_perl-%{version}
+%setup -q -n mod_perl-%{version}-%{_rc}
 %patch0 -p1 -b .orig
-%patch1 -p1 -b .orig
 
 %build
 %{__perl} Makefile.PL \
