@@ -3,7 +3,7 @@ Summary:	A Perl interpreter for the Apache Web server
 Summary(pl):	Interpreter perla dla serwera WWW Apache
 Name:		apache-mod_perl
 Version:	1.26
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
@@ -28,6 +28,8 @@ Provides:	perl(mod_perl_hooks)
 Provides:	mod_perl
 Obsoletes:	mod_perl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	mod_perl
+Obsoletes:	mod_perl-common
 
 %description
 Mod_perl incorporates a Perl interpreter into the Apache web server,
