@@ -23,7 +23,7 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
 Version:	1.27
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Daemons
 URL:		http://perl.apache.org
@@ -32,8 +32,7 @@ Patch0:		apache-perl-rh.patch
 # from ftp://ftp.kddlabs.co.jp/Linux/packages/Kondara/pub/Jirai/
 Patch1:		mod_perl-v6.patch
 BuildRequires:	apache(EAPI)-devel
-BuildRequires:	gdbm-devel
-BuildRequires:	perl >= 5.6.1
+BuildRequires:	perl >= 5.8.0
 BuildRequires:	perl-B-Graph
 BuildRequires:	perl-BSD-Resource
 BuildRequires:	perl-Devel-Symdump
@@ -41,7 +40,7 @@ BuildRequires:	perl-HTML-Parser
 BuildRequires:	perl-MIME-Base64
 BuildRequires:	perl-URI
 BuildRequires:	perl-libwww
-BuildRequires:	rpm-perlprov >= 3.0.3-16
+BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	%{apxs}
 PreReq:		apache(EAPI)
 Requires(post,preun):	%{apxs}
@@ -191,7 +190,8 @@ perl Makefile.PL \
 	USE_APXS=1 \
 	WITH_APXS=%{apxs} \
 	EVERYTHING=1 \
-	PERL_STACKED_HANDLERS=1
+	PERL_STACKED_HANDLERS=1 \
+	INSTALLDIRS=vendor
 
 (cd apaci; ln -s ../src/modules .; chmod +x find_source)
 %{__make}
@@ -236,22 +236,22 @@ fi
 
 %attr(755,root,root) %{_libdir}/apache/*.so
 
-%{perl_sitearch}/*.pm
-%{perl_sitearch}/*.PL
+%{perl_vendorarch}/*.pm
+%{perl_vendorarch}/*.PL
 
-%dir %{perl_sitearch}/Apache
-%{perl_sitearch}/Apache/*.pm
-%{perl_sitearch}/Apache/Constants
-%dir %{perl_sitearch}/auto/Apache
-%dir %{perl_sitearch}/auto/Apache/Leak
-%dir %{perl_sitearch}/auto/Apache/Symbol
+%dir %{perl_vendorarch}/Apache
+%{perl_vendorarch}/Apache/*.pm
+%{perl_vendorarch}/Apache/Constants
+%dir %{perl_vendorarch}/auto/Apache
+%dir %{perl_vendorarch}/auto/Apache/Leak
+%dir %{perl_vendorarch}/auto/Apache/Symbol
 
-%{perl_sitearch}/auto/*/*/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/*/*/*.so
+%{perl_vendorarch}/auto/*/*/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/*/*/*.so
 
 %{_mandir}/man3/[Acm]*
 
 # to -devel ?
-%{perl_sitearch}/auto/Apache/typemap
-%{perl_sitearch}/auto/Apache/mod_perl.exp
-%{perl_sitearch}/auto/Apache/include
+%{perl_vendorarch}/auto/Apache/typemap
+%{perl_vendorarch}/auto/Apache/mod_perl.exp
+%{perl_vendorarch}/auto/Apache/include
