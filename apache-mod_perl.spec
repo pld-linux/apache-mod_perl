@@ -1,4 +1,5 @@
 %include	/usr/lib/rpm/macros.perl
+%define 	apxs	/usr/sbin/apxs
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	Vestavìný interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -52,6 +53,8 @@ BuildRequires:	perl-MIME-Base64
 BuildRequires:	perl-URI
 BuildRequires:	perl-libwww
 BuildRequires:	rpm-perlprov >= 3.0.3-16
+BuildRequires:	%{apxs}
+Prereq:		%{_sbindir}/apxs
 Prereq:		apache(EAPI)
 Provides:	perl(mod_perl_hooks)
 Provides:	mod_perl
@@ -198,7 +201,7 @@ Apache web ·þÎñ³ÌÐò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 %build
 perl Makefile.PL \
 	USE_APXS=1 \
-	WITH_APXS=/usr/sbin/apxs \
+	WITH_APXS=%{apxs} \
 	EVERYTHING=1 \
 	PERL_STACKED_HANDLERS=1
 
@@ -223,7 +226,7 @@ gzip -9nf README INSTALL ToDo
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/usr/sbin/apxs -e -a -n perl %{_libexecdir}/libperl.so 1>&2
+%{_sbindir}/apxs -e -a -n perl %{_libexecdir}/libperl.so 1>&2
 if [ -f /var/lock/subsys/httpd ]; then
 	/etc/rc.d/init.d/httpd restart 1>&2
 else
@@ -232,7 +235,7 @@ fi
 
 %preun
 if [ "$1" = "0" ]; then
-	/usr/sbin/apxs -e -A -n perl %{_libexecdir}/libperl.so 1>&2
+	%{_sbindir}/apxs -e -A -n perl %{_libexecdir}/libperl.so 1>&2
 	if [ -f /var/lock/subsys/httpd ]; then
 		/etc/rc.d/init.d/httpd stop 1>&2
 	fi
