@@ -34,15 +34,15 @@ diff -urN mod_perl-1.99_17_org/Makefile.PL mod_perl-1.99_17/Makefile.PL
      DEFINE        => get_DEFINE(),
      macro         => {
          MODPERL_SRC        => $code->path,
-@@ -150,7 +150,7 @@
-                 error "cannot install mod_perl/$VERSION on top of $vstring",
-                     "use MP_INST_APACHE2=1 option " .
-                      "or to force installation delete:\n $old_modperl_pm";
--                exit 1;
-+#                exit 1;
-             }
+@@ -132,7 +132,7 @@
+         if ($build->{MP_INST_APACHE2}) {
+             print "ok (installing relative to Apache2/)\n";
          }
-     }
+-        else {
++        elsif (0) {
+             my $prefix;
+             /^PREFIX=(.*)/ && $1 && ($prefix = canonpath glob($1)) for @ARGV;
+ 
 @@ -591,8 +591,8 @@
  	cd "$(MODPERL_SRC)" && $(MAKE) install
  
