@@ -2,8 +2,8 @@
 Summary:	A Perl interpreter for the Apache Web server
 Summary(pl):	Interpreter perla dla serwera WWW Apache
 Name:		apache-mod_perl
-Version:	1.25
-Release:	5
+Version:	1.26
+Release:	1
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
