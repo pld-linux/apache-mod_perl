@@ -23,14 +23,14 @@ Summary(sv):	En inbyggd Perl-interpretator fЖr webbservern Apache
 Summary(uk):	Модуль вбудовування ╕нтерпретатора Perl в сервер Apache
 Summary(zh_CN):	сцсз Apache web ╥ЧнЯЁлпР╣д Perl ╫БймЁлпР║ё
 Name:		apache-mod_perl
-Version:	1.99_16
+Version:	1.99_17
 Release:	1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
 #Source0:	modperl-%{version}_%{snap}.tar.bz2
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-# Source0-md5:	94da0f0301e127e8ef8cf77f7c11b1b4
+# Source0-md5:	ffb9d5c825b93d91e6c3a8885f7d5296
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/

@@ -1,15 +1,19 @@
-diff -urN mod_perl-1.99_13-org/lib/Apache/Build.pm mod_perl-1.99_13/lib/Apache/Build.pm
---- mod_perl-1.99_13-org/lib/Apache/Build.pm	2004-03-04 18:24:32.000000000 +0100
-+++ mod_perl-1.99_13/lib/Apache/Build.pm	2004-04-07 15:56:14.946043880 +0200
-@@ -1307,12 +1307,12 @@
-     my $install = <<'EOI';
- install:
+diff -urN mod_perl-1.99_17_org/lib/Apache/Build.pm mod_perl-1.99_17/lib/Apache/Build.pm
+--- mod_perl-1.99_17_org/lib/Apache/Build.pm	2004-09-26 09:06:23.000000000 +0200
++++ mod_perl-1.99_17/lib/Apache/Build.pm	2004-11-09 18:41:20.043174376 +0100
+@@ -1499,16 +1499,16 @@
+     if (!$self->should_build_apache) {
+         $install .= <<'EOI';
  # install mod_perl.so
 -	@$(MKPATH) $(MODPERL_AP_LIBEXECDIR)
 +	@$(MKPATH) $(DESTDIR)$(MODPERL_AP_LIBEXECDIR)
  	$(MODPERL_TEST_F) $(MODPERL_LIB_DSO) && \
 -	$(MODPERL_CP) $(MODPERL_LIB_DSO) $(MODPERL_AP_LIBEXECDIR)
 +	$(MODPERL_CP) $(MODPERL_LIB_DSO) $(DESTDIR)$(MODPERL_AP_LIBEXECDIR)
+ EOI
+     }
+     
+     $install .= <<'EOI';
  # install mod_perl .h files
 -	@$(MKPATH) $(MODPERL_AP_INCLUDEDIR)
 -	$(MODPERL_CP) $(MODPERL_H_FILES) $(MODPERL_AP_INCLUDEDIR)
@@ -18,20 +22,29 @@ diff -urN mod_perl-1.99_13-org/lib/Apache/Build.pm mod_perl-1.99_13/lib/Apache/B
  EOI
  
      my $mf = $self->default_file('makefile');
-diff -urN mod_perl-1.99_13-org/Makefile.PL mod_perl-1.99_13/Makefile.PL
---- mod_perl-1.99_13-org/Makefile.PL	2004-03-04 18:24:28.000000000 +0100
-+++ mod_perl-1.99_13/Makefile.PL	2004-04-07 15:57:14.828940296 +0200
-@@ -65,7 +65,7 @@
-     NAME          => 'mod_perl',
+diff -urN mod_perl-1.99_17_org/Makefile.PL mod_perl-1.99_17/Makefile.PL
+--- mod_perl-1.99_17_org/Makefile.PL	2004-09-26 09:10:55.000000000 +0200
++++ mod_perl-1.99_17/Makefile.PL	2004-11-09 18:07:29.142918144 +0100
+@@ -70,7 +70,7 @@
      VERSION       => $VERSION,
+     NO_META       => 1,
      ABSTRACT_FROM => 'lib/mod_perl.pm',
 -    EXE_FILES     => \@exe_files,
 +#    EXE_FILES     => \@exe_files,
      DEFINE        => get_DEFINE(),
      macro         => {
          MODPERL_SRC        => $code->path,
-@@ -483,8 +483,8 @@
- 	cd "$(MODPERL_SRC)" && $(MODPERL_LIBMAKE) install
+@@ -150,7 +150,7 @@
+                 error "cannot install mod_perl/$VERSION on top of $vstring",
+                     "use MP_INST_APACHE2=1 option " .
+                      "or to force installation delete:\n $old_modperl_pm";
+-                exit 1;
++#                exit 1;
+             }
+         }
+     }
+@@ -591,8 +591,8 @@
+ 	cd "$(MODPERL_SRC)" && $(MAKE) install
  
  modperl_xs_h_install:
 -	@$(MKPATH) $(MODPERL_AP_INCLUDEDIR)
@@ -40,15 +53,4 @@ diff -urN mod_perl-1.99_13-org/Makefile.PL mod_perl-1.99_13/Makefile.PL
 +	$(CP) $(MODPERL_XS_H_FILES) $(DESTDIR)$(MODPERL_AP_INCLUDEDIR)
  
  modperl_src_clean:
- 	cd "$(MODPERL_SRC)" && $(MODPERL_LIBMAKE) clean
---- mod_perl-1.99_15-org/Makefile.PL	2004-08-24 18:33:21.035839248 +0200
-+++ mod_perl-1.99_13/Makefile.PL	2004-08-24 18:34:24.406205488 +0200
-@@ -151,7 +151,7 @@
-                 error "cannot install mod_perl/$VERSION on top of $vstring",
-                     "use MP_INST_APACHE2=1 option " .
-                      "or to force installation delete:\n $old_modperl_pm";
--                exit 1;
-+#               exit 1;
-             }
-         }
-     }
+ 	cd "$(MODPERL_SRC)" && $(MAKE) clean
