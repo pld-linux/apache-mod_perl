@@ -1,29 +1,8 @@
---- Makefile.PL.orig	Thu Jul 17 22:03:27 2003
-+++ Makefile.PL	Thu Jul 17 23:05:06 2003
-@@ -73,7 +73,7 @@
- ModPerl::BuildMM::WriteMakefile(
-     NAME      => 'mod_perl',
-     VERSION   => $VERSION,
--    EXE_FILES => \@exe_files,
-+#   EXE_FILES => \@exe_files,
-     macro     => {
-         MODPERL_SRC        => $code->path,
-         MODPERL_MAKEFILE   => basename($build->default_file('makefile')),
-@@ -419,8 +419,8 @@
- 	cd "$(MODPERL_SRC)" && $(MODPERL_LIBMAKE) install
- 
- modperl_xs_h_install:
--	@$(MKPATH) $(MODPERL_AP_INCLUDEDIR)
--	$(CP) $(MODPERL_XS_H_FILES) $(MODPERL_AP_INCLUDEDIR)
-+	@$(MKPATH) $(DESTDIR)$(MODPERL_AP_INCLUDEDIR)
-+	$(CP) $(MODPERL_XS_H_FILES) $(DESTDIR)$(MODPERL_AP_INCLUDEDIR)
- 
- modperl_src_clean:
- 	cd "$(MODPERL_SRC)" && $(MODPERL_LIBMAKE) clean
---- lib/Apache/Build.pm~	Thu Jul 17 22:03:40 2003
-+++ lib/Apache/Build.pm	Thu Jul 17 23:15:12 2003
-@@ -1190,12 +1190,12 @@
- 
+diff -urN modperl-2.0.org/lib/Apache/Build.pm modperl-2.0/lib/Apache/Build.pm
+--- modperl-2.0.org/lib/Apache/Build.pm	2003-10-07 01:41:09.000000000 +0200
++++ modperl-2.0/lib/Apache/Build.pm	2003-10-07 01:43:07.000000000 +0200
+@@ -1199,12 +1199,12 @@
+     my $install = <<'EOI';
  install:
  # install mod_perl.so
 -	@$(MKPATH) $(MODPERL_AP_LIBEXECDIR)
@@ -36,6 +15,29 @@
 -	$(MODPERL_CP) $(MODPERL_H_FILES) $(MODPERL_AP_INCLUDEDIR)
 +	@$(MKPATH) $(DESTDIR)$(MODPERL_AP_INCLUDEDIR)
 +	$(MODPERL_CP) $(MODPERL_H_FILES) $(DESTDIR)$(MODPERL_AP_INCLUDEDIR)
+ EOI
  
- .SUFFIXES: .xs .c $(MODPERL_OBJ_EXT) .lo .i .s
+     my $mf = $self->default_file('makefile');
+diff -urN modperl-2.0.org/Makefile.PL modperl-2.0/Makefile.PL
+--- modperl-2.0.org/Makefile.PL	2003-10-07 01:41:09.000000000 +0200
++++ modperl-2.0/Makefile.PL	2003-10-07 01:42:08.000000000 +0200
+@@ -62,7 +62,7 @@
+ ModPerl::BuildMM::WriteMakefile(
+     NAME      => 'mod_perl',
+     VERSION   => $VERSION,
+-    EXE_FILES => \@exe_files,
++#    EXE_FILES => \@exe_files,
+     DEFINE    => get_DEFINE(),
+     macro     => {
+         MODPERL_SRC        => $code->path,
+@@ -456,8 +456,8 @@
+ 	cd "$(MODPERL_SRC)" && $(MODPERL_LIBMAKE) install
  
+ modperl_xs_h_install:
+-	@$(MKPATH) $(MODPERL_AP_INCLUDEDIR)
+-	$(CP) $(MODPERL_XS_H_FILES) $(MODPERL_AP_INCLUDEDIR)
++	@$(MKPATH) $(DESTDIR)$(MODPERL_AP_INCLUDEDIR)
++	$(CP) $(MODPERL_XS_H_FILES) $(DESTDIR)$(MODPERL_AP_INCLUDEDIR)
+ 
+ modperl_src_clean:
+ 	cd "$(MODPERL_SRC)" && $(MODPERL_LIBMAKE) clean
