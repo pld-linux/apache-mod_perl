@@ -57,8 +57,8 @@ Provides:	perl(mod_perl_hooks)
 Provides:	mod_perl
 Provides:	perl-Apache-Test
 # bugs in rpm perl dependency finder?
-Provides:       perl(Apache::FunctionTable)
-Provides:       perl(Apache::StructureTable)
+Provides:	perl(Apache::FunctionTable)
+Provides:	perl(Apache::StructureTable)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
@@ -198,7 +198,7 @@ Apache web 服务程序， 并为 Apache 的 C 语言 API 提供面向对象的 Perl
 脚本回转过程更为快速。
 
 %prep
-%setup  -q -n mod_perl-%{version}
+%setup -q -n mod_perl-%{version}
 %patch0 -b .orig -p1
 
 %build
@@ -263,7 +263,7 @@ fi
 %attr(755,root,root) %{perl_vendorarch}/auto/*/*/*.so
 
 %{perl_vendorarch}/auto/Apache/typemap
-# to -devel?  directory ownership problem...
+# to -devel? directory ownership problem...
 %{_includedir}/apache/*.h
 
 %{_mandir}/man?/[^B]*
