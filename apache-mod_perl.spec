@@ -56,7 +56,7 @@ perl Makefile.PL \
 	PERL_STACKED_HANDLERS=1
 
 (cd apaci; ln -s ../src/modules .; chmod +x find_source)
-make
+%{__make}
 
 (cd faq; make)
 
