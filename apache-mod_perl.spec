@@ -36,6 +36,7 @@ BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	apr-util-devel
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
+BuildRequires:	openldap-devel
 BuildRequires:	perl-B-Graph
 BuildRequires:	perl-BSD-Resource
 BuildRequires:	perl-Devel-Symdump
@@ -56,6 +57,7 @@ Provides:	perl(Apache::FunctionTable)
 Provides:	perl(Apache::StructureTable)
 Provides:	perl(Apache::TestConfigParse)
 Provides:	perl(Apache::TestConfigPerl)
+Provides:	perl-Apache-Test
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
