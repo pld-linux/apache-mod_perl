@@ -22,7 +22,7 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒĞÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·şÎñ³ÌĞòµÄ Perl ½âÊÍ³ÌĞò¡£
 Name:		apache-mod_perl
 Version:	1.99_13
-Release:	1
+Release:	2
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -64,6 +64,8 @@ Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
 
 %define		_noautoreqdep	'perl(Apache::.*)' 'perl(mod_perl)'
+# hack to generate desired module names; rationale: MP_INST_APACHE2
+%define		__perl_provides	%{__perl} -Mlib=%{perl_vendorarch}/Apache2 /usr/lib/rpm/perl.prov
 
 %description
 Mod_perl incorporates a Perl interpreter into the Apache web server,
@@ -201,6 +203,7 @@ Apache web ·şÎñ³ÌĞò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 
 %build
 %{__perl} Makefile.PL \
+	MP_INST_APACHE2=1 \
 	MP_APXS=%{apxs} \
 	INSTALLDIRS=vendor \
 	MP_CCOPTS="%{rpmcflags} -I/usr/include/apache `apu-config --includes`" 
@@ -244,21 +247,24 @@ fi
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/httpd/httpd.conf/*.conf
 
 %{perl_vendorarch}/*.pm
-%{perl_vendorarch}/APR
 %{perl_vendorarch}/Apache
-%{perl_vendorarch}/ModPerl
+%dir %{perl_vendorarch}/Apache2
+%{perl_vendorarch}/Apache2/*.pm
+%{perl_vendorarch}/Apache2/APR
+%{perl_vendorarch}/Apache2/Apache
+%{perl_vendorarch}/Apache2/ModPerl
 
-%dir %{perl_vendorarch}/auto/*
-%{perl_vendorarch}/auto/*/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/*/*.so
-%dir %{perl_vendorarch}/auto/APR/[B-U]*
-%dir %{perl_vendorarch}/auto/Apache/[A-U]*
-%dir %{perl_vendorarch}/auto/ModPerl/*
-%{perl_vendorarch}/auto/*/*/*.ix
-%{perl_vendorarch}/auto/*/*/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/*/*/*.so
+%dir %{perl_vendorarch}/Apache2/auto/*
+%{perl_vendorarch}/Apache2/auto/*/*.bs
+%attr(755,root,root) %{perl_vendorarch}/Apache2/auto/*/*.so
+%dir %{perl_vendorarch}/Apache2/auto/APR/[B-U]*
+%dir %{perl_vendorarch}/Apache2/auto/Apache/[A-U]*
+%dir %{perl_vendorarch}/Apache2/auto/ModPerl/*
+%{perl_vendorarch}/Apache2/auto/*/*/*.ix
+%{perl_vendorarch}/Apache2/auto/*/*/*.bs
+%attr(755,root,root) %{perl_vendorarch}/Apache2/auto/*/*/*.so
 
-%{perl_vendorarch}/auto/Apache/typemap
+%{perl_vendorarch}/Apache2/auto/Apache/typemap
 # to -devel?  directory ownership problem...
 %{_includedir}/apache/*.h
 
