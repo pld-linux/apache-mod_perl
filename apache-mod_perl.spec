@@ -27,6 +27,7 @@ Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
+# Source0-md5:	bd07f4f1065eb0d0a8d8004219357d8c
 Patch0:		apache-perl-rh.patch
 # from ftp://ftp.kddlabs.co.jp/Linux/packages/Kondara/pub/Jirai/
 Patch1:		mod_perl-v6.patch
