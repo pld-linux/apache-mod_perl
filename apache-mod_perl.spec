@@ -22,7 +22,7 @@ Summary(uk):	Модуль вбудовування ╕нтерпретатора Perl в сервер Apache
 Summary(zh_CN):	сцсз Apache web ╥ЧнЯЁлпР╣д Perl ╫БймЁлпР║ё
 Name:		apache-mod_perl
 Version:	1.99_13
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
