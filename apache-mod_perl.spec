@@ -35,7 +35,7 @@ Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
 BuildRequires:	apache-devel >= 2.0.0
-BuildRequires:	apr-util-devel
+BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel
@@ -204,8 +204,9 @@ Apache web 服务程序， 并为 Apache 的 C 语言 API 提供面向对象的 Perl
 %build
 %{__perl} Makefile.PL \
 	MP_APXS=%{apxs} \
+	MP_APR_CONFIG=%{_bindir}/apr-1-config \
 	INSTALLDIRS=vendor \
-	MP_CCOPTS="-I/usr/include/apache `apu-config --includes`" 
+	MP_CCOPTS="-I/usr/include/apache `apu-1-config --includes`" 
 
 %{__make} \
 	OPTIMIZE="%{rpmcflags}" \
