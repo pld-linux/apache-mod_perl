@@ -11,7 +11,7 @@ Summary(id):	Interpreter Perl untuk web server Apache
 Summary(is):	Perl tЗlkur fyrir Apache vefЧjСninn
 Summary(it):	Interprete Perl integrato per il server Web Apache
 Summary(ja):	Apache Web ╔╣║╪╔п║╪мя╓нах╧Ч╓ъ Perl ╔╓╔С╔©║╪╔в╔Й╔©
-Summary(no):	En Perl-fortolker for webtjeneren Apache
+Summary(nb):	En Perl-fortolker for webtjeneren Apache
 Summary(pl):	Interpreter perla dla serwera WWW Apache
 Summary(pt):	Um interpretador de Perl embebido para o servidor Web Apache
 Summary(ru):	Встроенный интерпретатор Perl для WWW-сервера Apache
