@@ -266,4 +266,4 @@ fi
 # to -devel? directory ownership problem...
 %{_includedir}/apache/*.h
 
-%{_mandir}/man?/[^B]*
+%{_mandir}/man?/[!B]*
