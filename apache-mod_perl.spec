@@ -1,3 +1,5 @@
+# TODO:
+# - separate perl-things from apache libs and configs (needed for some buildings)
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
 # %define	snap	20031007
