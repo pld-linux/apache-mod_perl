@@ -27,7 +27,7 @@ License:	GPL
 Group:		Networking/Daemons
 #Source0:	http://perl.apache.org/dist/mod_perl-%{version}-current.tar.gz
 Source0:	modperl-%{version}_%{snap}.tar.bz2
-# Source0-md5:	84944a2acb0ddf6b24f31b6ee37a0575
+# Source0-md5:	9ba6e2962c742539f35017668f03222b
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
