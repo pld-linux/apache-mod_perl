@@ -1,8 +1,6 @@
-# TODO:
-# - add devel subpackage
 %include	/usr/lib/rpm/macros.perl
-%bcond_with	apache1 # use apache1 instead of apache
-%define	apxs	/usr/sbin/apxs%{?with_apache1:1}
+%define	apxs	/usr/sbin/apxs
+# %define	snap	20031007
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	Vestavìný interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -13,7 +11,7 @@ Summary(id):	Interpreter Perl untuk web server Apache
 Summary(is):	Perl túlkur fyrir Apache vefþjóninn
 Summary(it):	Interprete Perl integrato per il server Web Apache
 Summary(ja):	Apache Web ¥µ¡¼¥Ð¡¼ÍÑ¤ÎÁÈ¹þ¤ß Perl ¥¤¥ó¥¿¡¼¥×¥ê¥¿
-Summary(no):	En Perl-fortolker for webtjeneren Apache
+Summary(nb):	En Perl-fortolker for webtjeneren Apache
 Summary(pl):	Interpreter perla dla serwera WWW Apache
 Summary(pt):	Um interpretador de Perl embebido para o servidor Web Apache
 Summary(ru):	÷ÓÔÒÏÅÎÎÙÊ ÉÎÔÅÒÐÒÅÔÁÔÏÒ Perl ÄÌÑ WWW-ÓÅÒ×ÅÒÁ Apache
@@ -23,34 +21,45 @@ Summary(sv):	En inbyggd Perl-interpretator för webbservern Apache
 Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
-Version:	1.27
-Release:	2
-License:	GPL
+Version:	1.99_13
+Release:	0.1
+Epoch:		1
+License:	Apache
 Group:		Networking/Daemons
+#Source0:	modperl-%{version}_%{snap}.tar.bz2
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-# Source0-md5:	bd07f4f1065eb0d0a8d8004219357d8c
-Patch0:		apache-perl-rh.patch
-# from ftp://ftp.kddlabs.co.jp/Linux/packages/Kondara/pub/Jirai/
-Patch1:		mod_perl-v6.patch
-BuildRequires:	apache(EAPI)-devel
+# Source0-md5:	e8945611cae2fe797ae4bb198c0285b6
+Source1:	%{name}.conf
+Patch0:		%{name}-Makefile_PL.patch
+URL:		http://perl.apache.org/
+BuildRequires:	apache-devel >= 2.0.0
+BuildRequires:	apr-util-devel
+BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
-BuildRequires:	perl >= 5.6.1
-BuildRequires:	perl-B-Graph
-BuildRequires:	perl-BSD-Resource
-BuildRequires:	perl-Devel-Symdump
-BuildRequires:	perl-HTML-Parser
-BuildRequires:	perl-MIME-Base64
-BuildRequires:	perl-URI
-BuildRequires:	perl-libwww
+BuildRequires:	openldap-devel
+# These modules aren't needed?
+#BuildRequires:	perl-B-Graph
+#BuildRequires:	perl-BSD-Resource
+#BuildRequires:	perl-Devel-Symdump
+#BuildRequires:	perl-HTML-Parser
+#BuildRequires:	perl-MIME-Base64
+#BuildRequires:	perl-URI
+#BuildRequires:	perl-devel >= 5.6.1
+#BuildRequires:	perl-libwww
 BuildRequires:	rpm-perlprov >= 3.0.3-16
-BuildRequires:	%{apxs}
-PreReq:		apache(EAPI)
+%requires_eq	apache
+%requires_eq	perl-base
 Requires(post,preun):	%{apxs}
+# What's this for?
 Provides:	perl(mod_perl_hooks)
 Provides:	mod_perl
+Provides:	perl-Apache-Test
+# bugs in rpm perl dependency finder?
+Provides:       perl(Apache::FunctionTable)
+Provides:       perl(Apache::StructureTable)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Mod_perl incorporates a Perl interpreter into the Apache web server,
@@ -184,38 +193,33 @@ Apache web ·þÎñ³ÌÐò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 
 %prep
 %setup  -q -n mod_perl-%{version}
-%patch0 -p1
-%patch1 -p1
+%patch0 -b .orig -p1
 
 %build
-perl Makefile.PL \
-	USE_APXS=1 \
-	WITH_APXS=%{apxs} \
-	EVERYTHING=1 \
-	PERL_STACKED_HANDLERS=1 \
+%{__perl} Makefile.PL \
+	MP_APXS=%{apxs} \
 	INSTALLDIRS=vendor
 
-(cd apaci; ln -s ../src/modules .; chmod +x find_source)
-%{__make}
+find . -name 'Makefile*' -exec perl -pi -e \
+"s#-I/usr/include/apache#-I/usr/include/apache $(apu-config --includes)#g" "{}" ";"
 
-cd faq
-%{__make}
+%{__make} \
+	CC="%{__cc}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir}/apache,/home/httpd/manual/mod}
+install -d $RPM_BUILD_ROOT{%{_libdir}/apache,/etc/httpd/httpd.conf}
+install -d $RPM_BUILD_ROOT/etc/httpd/httpd.conf/
 
-%{__make} pure_install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
-install apaci/libperl.so $RPM_BUILD_ROOT%{_libdir}/apache
-install htdocs/manual/mod/mod_perl.html \
-	$RPM_BUILD_ROOT/home/httpd/manual/mod
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/httpd/httpd.conf/75_mod_perl.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%{apxs} -e -a -n perl %{_libexecdir}/libperl.so 1>&2
 if [ -f /var/lock/subsys/httpd ]; then
 	/etc/rc.d/init.d/httpd restart 1>&2
 else
@@ -224,7 +228,6 @@ fi
 
 %preun
 if [ "$1" = "0" ]; then
-	%{apxs} -e -A -n perl %{_libexecdir}/libperl.so 1>&2
 	if [ -f /var/lock/subsys/httpd ]; then
 		/etc/rc.d/init.d/httpd restart 1>&2
 	fi
@@ -233,36 +236,27 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README INSTALL CREDITS faq/*.html faq/*.txt apache-modlist.html eg
-%doc /home/httpd/manual/mod/*html
-
+%doc Changes INSTALL README STATUS
 %attr(755,root,root) %{_libdir}/apache/*.so
-
-#%{perl_sitearch}/*.pm
-#%{perl_sitearch}/*.PL
-
-%dir %{perl_vendorarch}/Apache
-%dir %{perl_vendorarch}/auto/Apache
-%dir %{perl_vendorarch}/auto/Apache/Leak
-%dir %{perl_vendorarch}/auto/Apache/Symbol
-%{perl_vendorarch}/Apache.pm
-%{perl_vendorarch}/Apache/*.pm
-%{perl_vendorarch}/Apache/Constants
-
-%attr(755,root,root) %{perl_vendorarch}/auto/Apache/Leak/Leak.so
-%attr(755,root,root) %{perl_vendorarch}/auto/Apache/Symbol/Symbol.so
-
-%{perl_vendorarch}/auto/Apache/Leak/Leak.bs
-%{perl_vendorarch}/auto/Apache/Symbol/Symbol.bs
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/httpd/httpd.conf/*.conf
 
 %{perl_vendorarch}/*.pm
+%{perl_vendorarch}/APR
+%{perl_vendorarch}/Apache
+%{perl_vendorarch}/ModPerl
 
+%dir %{perl_vendorarch}/auto/*
+%{perl_vendorarch}/auto/*/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/*/*.so
+%dir %{perl_vendorarch}/auto/APR/[B-U]*
+%dir %{perl_vendorarch}/auto/Apache/[A-U]*
+%dir %{perl_vendorarch}/auto/ModPerl/*
+%{perl_vendorarch}/auto/*/*/*.ix
+%{perl_vendorarch}/auto/*/*/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/*/*/*.so
 
-#%{perl_sitearch}/auto/*/*/*.bs
+%{perl_vendorarch}/auto/Apache/typemap
+# to -devel?  directory ownership problem...
+%{_includedir}/apache/*.h
 
-%{_mandir}/man3/[Acm]*
-
-# to -devel ?
-#%{perl_sitearch}/auto/Apache/typemap
-#%{perl_sitearch}/auto/Apache/mod_perl.exp
-#%{perl_sitearch}/auto/Apache/include
+%{_mandir}/man?/[^B]*
