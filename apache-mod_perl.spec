@@ -20,7 +20,7 @@ Summary(uk):	Модуль вбудовування ╕нтерпретатора Perl в сервер Apache
 Summary(zh_CN):	сцсз Apache web ╥ЧнЯЁлпР╣д Perl ╫БймЁлпР║ё
 Name:		apache-mod_perl
 Version:	1.26
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Daemons
 Group(cs):	SМ╩ovИ/DИmoni
