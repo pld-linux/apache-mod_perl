@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
-%define	snap	20031007
+# %define	snap	20031007
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	Vestavìný interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -21,43 +21,42 @@ Summary(sv):	En inbyggd Perl-interpretator för webbservern Apache
 Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
-Version:	2.0
-Release:	1.%{snap}.0
-License:	GPL
+Version:	1.99_13
+Release:	0.1
+Epoch:		1
+License:	Apache
 Group:		Networking/Daemons
-#Source0:	http://perl.apache.org/dist/mod_perl-%{version}-current.tar.gz
-Source0:	modperl-%{version}_%{snap}.tar.bz2
-# Source0-md5:	9ba6e2962c742539f35017668f03222b
+#Source0:	modperl-%{version}_%{snap}.tar.bz2
+Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
+# Source0-md5:	e8945611cae2fe797ae4bb198c0285b6
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
-BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	apr-util-devel
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel
-BuildRequires:	perl-B-Graph
-BuildRequires:	perl-BSD-Resource
-BuildRequires:	perl-Devel-Symdump
-BuildRequires:	perl-HTML-Parser
-BuildRequires:	perl-MIME-Base64
-BuildRequires:	perl-URI
-BuildRequires:	perl-devel >= 5.6.1
-BuildRequires:	perl-libwww
+# These modules aren't needed?
+#BuildRequires:	perl-B-Graph
+#BuildRequires:	perl-BSD-Resource
+#BuildRequires:	perl-Devel-Symdump
+#BuildRequires:	perl-HTML-Parser
+#BuildRequires:	perl-MIME-Base64
+#BuildRequires:	perl-URI
+#BuildRequires:	perl-devel >= 5.6.1
+#BuildRequires:	perl-libwww
 BuildRequires:	rpm-perlprov >= 3.0.3-16
-PreReq:		apache >= 2.0.0
 %requires_eq	apache
 %requires_eq	perl-base
 Requires(post,preun):	%{apxs}
+# What's this for?
 Provides:	perl(mod_perl_hooks)
 Provides:	mod_perl
-# bugs in rpm perl dependency finder?
-Provides:	perl(Apache::FunctionTable)
-Provides:	perl(Apache::StructureTable)
-Provides:	perl(Apache::TestConfigParse)
-Provides:	perl(Apache::TestConfigPerl)
 Provides:	perl-Apache-Test
+# bugs in rpm perl dependency finder?
+Provides:       perl(Apache::FunctionTable)
+Provides:       perl(Apache::StructureTable)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
@@ -193,16 +192,16 @@ Apache web ·þÎñ³ÌÐò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 ½Å±¾»Ø×ª¹ý³Ì¸üÎª¿ìËÙ¡£
 
 %prep
-%setup  -q -n modperl-%{version}
+%setup  -q -n mod_perl-%{version}
 %patch0 -b .orig -p1
 
 %build
 %{__perl} Makefile.PL \
 	MP_APXS=%{apxs} \
-	MP_AP_PREFIX=%{_usr} \
 	INSTALLDIRS=vendor
 
-find . -name 'Makefile*' -exec perl -pi -e "s#-I%{_includedir}/apache#-I%{_includedir}/apache $(apu-config --includes)#g" "{}" ";"
+find . -name 'Makefile*' -exec perl -pi -e \
+"s#-I/usr/include/apache#-I/usr/include/apache $(apu-config --includes)#g" "{}" ";"
 
 %{__make} \
 	CC="%{__cc}"
