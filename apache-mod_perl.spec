@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
-%define	snap	20030717
+%define	snap	20031007
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	Vestavìný interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -26,8 +26,8 @@ Release:	1.%{snap}.0
 License:	GPL
 Group:		Networking/Daemons
 #Source0:	http://perl.apache.org/dist/mod_perl-%{version}-current.tar.gz
-Source0:	http://radek.karnet.pl/pld/modperl-%{version}_%{snap}.tar.bz2
-# Source0-md5:	af7904192118f7a8aec0d3bd245e4d15
+Source0:	modperl-%{version}_%{snap}.tar.bz2
+# Source0-md5:	84944a2acb0ddf6b24f31b6ee37a0575
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
@@ -191,7 +191,7 @@ Apache web ·þÎñ³ÌÐò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 
 %prep
 %setup  -q -n modperl-%{version}
-%patch0 -b .orig -p0
+%patch0 -b .orig -p1
 
 %build
 %{__perl} Makefile.PL \
