@@ -24,7 +24,7 @@ Summary(zh_CN):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 Version:	2.0.0
 %define	_rc	RC2-XMas
-Release:	0.%(echo %{_rc} | tr - _).2
+Release:	0.%(echo %{_rc} | tr - _).3
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
