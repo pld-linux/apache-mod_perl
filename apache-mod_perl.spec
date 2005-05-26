@@ -24,7 +24,7 @@ Summary(zh_CN):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 Version:	2.0.0
 #%define	_rc	RC6
-Release:	0.2
+Release:	0.9
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -229,7 +229,7 @@ install  xs/tables/current/ModPerl/* $RPM_BUILD_ROOT/%{perl_vendorarch}/ModPerl
 
 rm -rf $RPM_BUILD_ROOT/%{perl_vendorarch}/Bundle/ApacheTest.pm
 rm -f $RPM_BUILD_ROOT/%{_mandir}/man?/Bundle::Apache2.3pm
-
+mv -f $RPM_BUILD_ROOT/%{perl_vendorarch}/Bundle/Apache3.pm $RPM_BUILD_ROOT/%{perl_vendorarch}/
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_mod_perl.conf
 
 %clean
