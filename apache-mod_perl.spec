@@ -222,6 +222,14 @@ install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name \*.orig -exec rm -f '{}' \;
+
+install  xs/tables/current/Apache2/* $RPM_BUILD_ROOT/%{perl_vendorarch}/Apache2
+install  xs/tables/current/APR/* $RPM_BUILD_ROOT/%{perl_vendorarch}/APR
+install  xs/tables/current/ModPerl/* $RPM_BUILD_ROOT/%{perl_vendorarch}/ModPerl
+
+rm -rf $RPM_BUILD_ROOT/%{perl_vendorarch}/Bundle
+rm -f $RPM_BUILD_ROOT/%{_mandir}/man?/Bundle*
+
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_mod_perl.conf
 
 %clean
@@ -268,4 +276,4 @@ fi
 # to -devel? directory ownership problem...
 %{_includedir}/apache/*.h
 
-%{_mandir}/man?/[!B]*
+%{_mandir}/man?/*
