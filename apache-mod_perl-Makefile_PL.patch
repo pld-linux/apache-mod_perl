@@ -1,12 +1,12 @@
-diff -urN mod_perl-2.0.0-RC6_org/Makefile.PL mod_perl-2.0.0-RC6/Makefile.PL
---- mod_perl-2.0.0-RC6_org/Makefile.PL	2004-09-26 09:10:55.000000000 +0200
-+++ mod_perl-2.0.0-RC6/Makefile.PL	2005-05-18 17:37:29.142918144 +0100
+diff -Naur mod_perl-2.0.0-RC6.orig/Makefile.PL mod_perl-2.0.0-RC6/Makefile.PL
+--- mod_perl-2.0.0-RC6.orig/Makefile.PL	2005-05-26 13:01:39.000000000 +0200
++++ mod_perl-2.0.0-RC6/Makefile.PL	2005-05-26 13:01:48.000000000 +0200
 @@ -71,7 +71,7 @@
      DISTNAME      => 'mod_perl',
      NO_META       => 1,
-     ABSTRACT_FROM => 'lib/mod_perl.pm',
+     ABSTRACT_FROM => 'lib/mod_perl2.pm',
 -    EXE_FILES     => \@exe_files,
 +#    EXE_FILES     => \@exe_files,
      DEFINE        => get_DEFINE(),
      macro         => {
-         MODPERL_SRC        => $code->path,
+         MODPERL_SRC           => $code->path,

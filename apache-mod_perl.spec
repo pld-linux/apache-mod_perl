@@ -23,13 +23,13 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒĞÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·şÎñ³ÌĞòµÄ Perl ½âÊÍ³ÌĞò¡£
 Name:		apache-mod_perl
 Version:	2.0.0
-%define	_rc	RC6
-Release:	0.%{_rc}.0.1
+#%define	_rc	RC6
+Release:	0.1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
-Source0:	http://perl.apache.org/dist/mod_perl-%{version}-%{_rc}.tar.gz
-# Source0-md5:	3e7f7aefb19c772a998802990ced15c0
+Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
+# Source0-md5:	99325d82e2c42361123f6a242e57a593
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
@@ -199,7 +199,7 @@ Apache web ·şÎñ³ÌĞò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 ½Å±¾»Ø×ª¹ı³Ì¸üÎª¿ìËÙ¡£
 
 %prep
-%setup -q -n mod_perl-%{version}-%{_rc}
+%setup -q -n mod_perl-%{version}
 %patch0 -p1 -b .orig
 
 %build
@@ -251,19 +251,20 @@ fi
 %{perl_vendorarch}/*.pm
 %{perl_vendorarch}/APR
 %{perl_vendorarch}/Apache
+%{perl_vendorarch}/Apache2
 %{perl_vendorarch}/ModPerl
 
 %dir %{perl_vendorarch}/auto/*
 %{perl_vendorarch}/auto/*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/*/*.so
 %dir %{perl_vendorarch}/auto/APR/[B-U]*
-%dir %{perl_vendorarch}/auto/Apache/[A-U]*
+%dir %{perl_vendorarch}/auto/Apache2/[A-U]*
 %dir %{perl_vendorarch}/auto/ModPerl/*
 %{perl_vendorarch}/auto/*/*/*.ix
 %{perl_vendorarch}/auto/*/*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/*/*/*.so
 
-%{perl_vendorarch}/auto/Apache/typemap
+%{perl_vendorarch}/auto/Apache2/typemap
 # to -devel? directory ownership problem...
 %{_includedir}/apache/*.h
 
