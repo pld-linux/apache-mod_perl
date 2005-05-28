@@ -229,7 +229,7 @@ install  xs/tables/current/ModPerl/* $RPM_BUILD_ROOT/%{perl_vendorarch}/ModPerl
 
 rm -rf $RPM_BUILD_ROOT/%{perl_vendorarch}/Bundle/ApacheTest.pm
 rm -f $RPM_BUILD_ROOT/%{_mandir}/man?/Bundle::Apache2.3pm
-mv -f $RPM_BUILD_ROOT/%{perl_vendorarch}/Bundle/Apache3.pm $RPM_BUILD_ROOT/%{perl_vendorarch}/
+mv -f $RPM_BUILD_ROOT/%{perl_vendorarch}/Bundle/Apache2.pm $RPM_BUILD_ROOT/%{perl_vendorarch}/
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_mod_perl.conf
 
 %clean
