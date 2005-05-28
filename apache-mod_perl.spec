@@ -227,9 +227,8 @@ install  xs/tables/current/Apache2/* $RPM_BUILD_ROOT/%{perl_vendorarch}/Apache2
 install  xs/tables/current/APR/* $RPM_BUILD_ROOT/%{perl_vendorarch}/APR
 install  xs/tables/current/ModPerl/* $RPM_BUILD_ROOT/%{perl_vendorarch}/ModPerl
 
-rm -rf $RPM_BUILD_ROOT/%{perl_vendorarch}/Bundle/ApacheTest.pm
-rm -f $RPM_BUILD_ROOT/%{_mandir}/man?/Bundle::Apache2.3pm
-mv -f $RPM_BUILD_ROOT/%{perl_vendorarch}/Bundle/Apache2.pm $RPM_BUILD_ROOT/%{perl_vendorarch}/
+rm -rf $RPM_BUILD_ROOT/%{perl_vendorarch}/Bundle
+rm -f $RPM_BUILD_ROOT/%{_mandir}/man?/Bundle*
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_mod_perl.conf
 
 %clean
@@ -261,7 +260,6 @@ fi
 %{perl_vendorarch}/Apache
 %{perl_vendorarch}/Apache2
 %{perl_vendorarch}/ModPerl
-%{perl_vendorarch}/Bundle
 
 %dir %{perl_vendorarch}/auto/*
 %{perl_vendorarch}/auto/*/*.bs
