@@ -204,6 +204,7 @@ Apache web 服务程序， 并为 Apache 的 C 语言 API 提供面向对象的 Perl
 %{__perl} Makefile.PL \
 	MP_APXS=%{apxs} \
 	MP_APR_CONFIG=%{_bindir}/apr-1-config \
+	MP_APU_CONFIG=%{_bindir}/apu-1-config \
 	INSTALLDIRS=vendor \
 	MP_CCOPTS="-I/usr/include/apache `apu-1-config --includes`" 
 
