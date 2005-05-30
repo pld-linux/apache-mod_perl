@@ -23,7 +23,6 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
 Version:	2.0.0
-#%define	_rc	RC6
 Release:	0.9
 Epoch:		1
 License:	Apache
@@ -51,7 +50,6 @@ BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 %requires_eq	apache
 Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
-Requires(post,preun):	%{apxs}
 # What's this for?
 Provides:	perl(mod_perl_hooks)
 Provides:	mod_perl
@@ -200,7 +198,7 @@ Apache web ·þÎñ³ÌÐò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 
 %prep
 %setup -q -n mod_perl-%{version}
-%patch0 -p1 -b .orig
+%patch0 -p1
 
 %build
 %{__perl} Makefile.PL \
@@ -223,12 +221,12 @@ install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf}
 	DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name \*.orig -exec rm -f '{}' \;
 
-install  xs/tables/current/Apache2/* $RPM_BUILD_ROOT/%{perl_vendorarch}/Apache2
-install  xs/tables/current/APR/* $RPM_BUILD_ROOT/%{perl_vendorarch}/APR
-install  xs/tables/current/ModPerl/* $RPM_BUILD_ROOT/%{perl_vendorarch}/ModPerl
+install xs/tables/current/Apache2/* $RPM_BUILD_ROOT%{perl_vendorarch}/Apache2
+install xs/tables/current/APR/* $RPM_BUILD_ROOT%{perl_vendorarch}/APR
+install xs/tables/current/ModPerl/* $RPM_BUILD_ROOT%{perl_vendorarch}/ModPerl
 
-rm -rf $RPM_BUILD_ROOT/%{perl_vendorarch}/Bundle
-rm -f $RPM_BUILD_ROOT/%{_mandir}/man?/Bundle*
+rm -rf $RPM_BUILD_ROOT%{perl_vendorarch}/Bundle
+rm -f $RPM_BUILD_ROOT%{_mandir}/man?/Bundle*
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_mod_perl.conf
 
 %clean
@@ -248,12 +246,11 @@ if [ "$1" = "0" ]; then
 	fi
 fi
 
-
 %files
 %defattr(644,root,root,755)
 %doc Changes INSTALL README STATUS
 %attr(755,root,root) %{_pkglibdir}/*.so
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd.conf/*.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*.conf
 
 %{perl_vendorarch}/*.pm
 %{perl_vendorarch}/APR
