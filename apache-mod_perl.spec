@@ -38,15 +38,6 @@ BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel
 BuildRequires:	perl-devel >= 1:5.8.2
-# These modules aren't needed?
-#BuildRequires:	perl-B-Graph
-#BuildRequires:	perl-BSD-Resource
-#BuildRequires:	perl-Devel-Symdump
-#BuildRequires:	perl-HTML-Parser
-#BuildRequires:	perl-MIME-Base64
-#BuildRequires:	perl-URI
-#BuildRequires:	perl-devel >= 5.6.1
-#BuildRequires:	perl-libwww
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 %requires_eq	apache
 Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
@@ -54,9 +45,6 @@ Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERS
 Provides:	perl(mod_perl_hooks)
 Provides:	mod_perl
 Provides:	perl-Apache-Test
-# bugs in rpm perl dependency finder?
-Provides:	perl(Apache::FunctionTable)
-Provides:	perl(Apache::StructureTable)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
@@ -206,7 +194,6 @@ Apache web 服务程序， 并为 Apache 的 C 语言 API 提供面向对象的 Perl
 	MP_APR_CONFIG=%{_bindir}/apr-1-config \
 	MP_APU_CONFIG=%{_bindir}/apu-1-config \
 	INSTALLDIRS=vendor \
-	MP_CCOPTS="-I/usr/include/apache `apu-1-config --includes`" 
 
 %{__make} \
 	OPTIMIZE="%{rpmcflags}" \
