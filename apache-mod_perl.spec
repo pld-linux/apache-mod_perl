@@ -23,7 +23,7 @@ Summary(uk):	Модуль вбудовування ╕нтерпретатора Perl в сервер Apache
 Summary(zh_CN):	сцсз Apache web ╥ЧнЯЁлпР╣д Perl ╫БймЁлпР║ё
 Name:		apache-mod_perl
 Version:	2.0.0
-Release:	1
+Release:	1.9
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -48,6 +48,7 @@ Provides:	perl-Apache-Test
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
+Conflicts:	perl-modules < 1:5.8.6-6
 
 # TODO: separate -devel with ExtUtils::Embed and friends?
 %define		_noautoreq	'perl(Apache::.*)' 'perl(mod_perl)' 'perl(ModPerl::.*)' 'perl(ExtUtils::Embed)'
