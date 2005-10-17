@@ -23,7 +23,7 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
 Version:	2.0.1
-Release:	3
+Release:	4
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -32,7 +32,7 @@ Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
-BuildRequires:	apache-devel >= 2.0.0
+BuildRequires:	apache-devel >= 2.0.55-1
 BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
