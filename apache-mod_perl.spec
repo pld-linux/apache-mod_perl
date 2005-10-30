@@ -51,7 +51,7 @@ Obsoletes:	mod_perl-common
 Conflicts:	perl-modules < 1:5.8.6-6
 
 # TODO: separate -devel with ExtUtils::Embed and friends?
-%define		_noautoreq	'perl(Apache::.*)' 'perl(mod_perl)' 'perl(ModPerl::.*)' 'perl(ExtUtils::Embed)'
+%define		_noautoreq	'perl(Apache::.*)' 'perl(mod_perl)' 'perl(ModPerl::.*)' 'perl(ExtUtils::Embed)' 'perl(Module::Build)'
 %define		_sysconfdir	%(%{apxs} -q SYSCONFDIR)
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
 
