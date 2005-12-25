@@ -1,5 +1,6 @@
 # TODO:
 # - separate perl-things from apache libs and configs (needed for some buildings)
+# - separate devel things from runtime things (apache-mod_perl-2.0.2-2 marks perl-ExtUtils-MakeMaker-6.25_08-1 (cap perl(ExtUtils::Install)))
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
 Summary:	A Perl interpreter for the Apache Web server
