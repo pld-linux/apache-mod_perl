@@ -24,7 +24,7 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
 Version:	2.0.2
-Release:	2
+Release:	3
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -41,21 +41,22 @@ BuildRequires:	openldap-devel
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 %requires_eq_to	apache apache-devel
+Provides:	apache(mod_perl)
+Provides:	mod_perl
 Requires:	apache(modules-api) = %apache_modules_api
 Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
-# What's this for?
+# What's this mod_perl_hooks for?
 Provides:	perl(mod_perl_hooks)
-Provides:	mod_perl
 Provides:	perl-Apache-Test
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
 Conflicts:	perl-modules < 1:5.8.6-6
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # TODO: separate -devel with ExtUtils::Embed and friends?
 %define		_noautoreq	'perl(Apache::.*)' 'perl(mod_perl)' 'perl(ModPerl::.*)' 'perl(ExtUtils::Embed)' 'perl(Module::Build)'
-%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR)
-%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
+%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)
+%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
 
 %description
 Mod_perl incorporates a Perl interpreter into the Apache web server,
