@@ -41,10 +41,10 @@ BuildRequires:	openldap-devel
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 %requires_eq_to	apache apache-devel
-Provides:	apache(mod_perl)
-Provides:	mod_perl
 Requires:	apache(modules-api) = %apache_modules_api
 Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
+Provides:	apache(mod_perl)
+Provides:	mod_perl
 # What's this mod_perl_hooks for?
 Provides:	perl(mod_perl_hooks)
 Provides:	perl-Apache-Test
@@ -227,8 +227,6 @@ rm -rf $RPM_BUILD_ROOT
 %post
 if [ -f /var/lock/subsys/httpd ]; then
 	/etc/rc.d/init.d/httpd restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/httpd start\" to start apache HTTP daemon."
 fi
 
 %preun
@@ -241,8 +239,8 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc Changes INSTALL README STATUS
-%attr(755,root,root) %{_pkglibdir}/*.so
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*.conf
+%attr(755,root,root) %{_pkglibdir}/*.so
 
 %{perl_vendorarch}/*.pm
 %{perl_vendorarch}/APR
