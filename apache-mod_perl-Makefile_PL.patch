@@ -10,3 +10,21 @@ diff -Naur mod_perl-2.0.0-RC6.orig/Makefile.PL mod_perl-2.0.0-RC6/Makefile.PL
      DEFINE        => get_DEFINE(),
      macro         => {
          MODPERL_SRC           => $code->path,
+--- mod_perl-2.0.2/Makefile.PL	2005-12-29 20:58:08.000000000 +0200
++++ /tmp/mp	2005-12-29 20:52:31.000000000 +0200
+@@ -116,15 +116,6 @@
+ 
+ sub configure {
+ 
+-    # mod_perl test suite relies on having Apache-Test bundled with
+-    # the mod_perl source, since any pre-installed version may not do
+-    # the right thing
+-    unless (-d "Apache-Test") {
+-        error "Can't find a sub-directory Apache-Test. " .
+-            "Make sure that you are using a complete source distribution";
+-        exit 1;
+-    }
+-
+     set_modperl_version();
+ 
+     if ($old_modperl_version) {
