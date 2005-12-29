@@ -24,7 +24,7 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
 Version:	2.0.2
-Release:	3
+Release:	3.8
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -38,16 +38,17 @@ BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel
+BuildRequires:	perl-Apache-Test
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 %requires_eq_to	apache apache-devel
 Requires:	apache(modules-api) = %apache_modules_api
 Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
 Provides:	apache(mod_perl)
-Provides:	mod_perl
 # What's this mod_perl_hooks for?
 Provides:	perl(mod_perl_hooks)
-Provides:	perl-Apache-Test
+# not sure is this neccessary
+Requires:	perl-Apache-Test
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
 Conflicts:	perl-modules < 1:5.8.6-6
@@ -188,9 +189,27 @@ Apache web ·þÎñ³ÌÐò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 ½Ó¿Ú¡£ ÓÉÓÚ²»±ØÆô¶¯ÈÎºÎÍâ²¿ Perl ½âÊÍ³ÌÐò£¬Òò´Ë»áÊ¹ CGI
 ½Å±¾»Ø×ª¹ý³Ì¸üÎª¿ìËÙ¡£
 
+%package devel
+Summary:	Files needed for building XS modules that use mod_perl
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+Requires:	apache-devel >= 2.0
+
+%description devel
+The apache-mod_perl-devel package contains the files needed for
+building XS modules that use mod_perl.
+
 %prep
 %setup -q -n mod_perl-%{version}
 %patch0 -p1
+
+system=$(%{__perl} -MApache::Test -e 'print Apache::Test->VERSION')
+bundled=$(%{__perl} -IApache-Test/lib -MApache::Test -e 'print Apache::Test->VERSION')
+if [ "$system" != "$bundled" ]; then
+	: Need Apache::Test version $bundled installed in system. please fix.
+	exit 1
+fi
+rm -rf Apache-Test
 
 %build
 %{__perl} Makefile.PL \
@@ -244,7 +263,6 @@ fi
 
 %{perl_vendorarch}/*.pm
 %{perl_vendorarch}/APR
-%{perl_vendorarch}/Apache
 %{perl_vendorarch}/Apache2
 %{perl_vendorarch}/ModPerl
 
@@ -259,7 +277,9 @@ fi
 %attr(755,root,root) %{perl_vendorarch}/auto/*/*/*.so
 
 %{perl_vendorarch}/auto/Apache2/typemap
-# to -devel? directory ownership problem...
-%{_includedir}/apache/*.h
 
 %{_mandir}/man?/*
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/apache/*.h
