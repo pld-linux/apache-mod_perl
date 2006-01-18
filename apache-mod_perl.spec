@@ -39,7 +39,7 @@ BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel >= 2.3.0
-BuildRequires:	perl-Apache-Test = %{apache_test_version}
+#BuildRequires:	perl-Apache-Test = %{apache_test_version}
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 %requires_eq_to	apache apache-devel
@@ -49,7 +49,7 @@ Provides:	apache(mod_perl)
 # What's this mod_perl_hooks for?
 Provides:	perl(mod_perl_hooks)
 # not sure is this neccessary
-Requires:	perl-Apache-Test = %{apache_test_version}
+#Requires:	perl-Apache-Test = %{apache_test_version}
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
 Conflicts:	perl-modules < 1:5.8.6-6
