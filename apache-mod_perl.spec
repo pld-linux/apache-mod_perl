@@ -210,7 +210,7 @@ building XS modules that use mod_perl.
 %setup -q -n mod_perl-%{version}
 %patch0 -p1
 
-if %{without internal_test}
+%if !%{with internal_test}
 system=$(%{__perl} -MApache::Test -e 'print Apache::Test->VERSION')
 bundled=$(%{__perl} -IApache-Test/lib -MApache::Test -e 'print Apache::Test->VERSION')
 if [ "$system" != "$bundled" ]; then
