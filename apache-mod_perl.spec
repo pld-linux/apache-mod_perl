@@ -41,7 +41,7 @@ BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel >= 2.3.0
-%if %{without internal_test}
+%if !%{with internal_test}
 BuildRequires:	perl-Apache-Test = %{apache_test_version}
 %endif
 BuildRequires:	perl-devel >= 1:5.8.2
@@ -53,7 +53,7 @@ Provides:	apache(mod_perl)
 # What's this mod_perl_hooks for?
 Provides:	perl(mod_perl_hooks)
 # not sure is this neccessary
-if %{without internal_test}
+%if !%{with internal_test}
 Requires:	perl-Apache-Test = %{apache_test_version}
 %endif
 Obsoletes:	mod_perl
