@@ -1,7 +1,7 @@
 # TODO:
 # - separate perl-things from apache libs and configs (needed for some buildings)
 # - separate devel things from runtime things (apache-mod_perl-2.0.2-2 marks perl-ExtUtils-MakeMaker-6.25_08-1 (cap perl(ExtUtils::Install)))
-%bcond_with	internal_test	# use internal Apache-Test
+%bcond_without	internal_test	# use internal Apache-Test
 #
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
@@ -52,8 +52,8 @@ Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERS
 Provides:	apache(mod_perl)
 # What's this mod_perl_hooks for?
 Provides:	perl(mod_perl_hooks)
-# not sure is this neccessary
 %if !%{with internal_test}
+# not sure is this neccessary
 Requires:	perl-Apache-Test = %{apache_test_version}
 %endif
 Obsoletes:	mod_perl
