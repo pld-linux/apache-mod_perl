@@ -41,7 +41,7 @@ BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel >= 2.3.0
-%if !%{with internal_test}
+%if %{without internal_test}
 BuildRequires:	perl-Apache-Test = %{apache_test_version}
 %endif
 BuildRequires:	perl-devel >= 1:5.8.2
@@ -52,7 +52,7 @@ Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERS
 Provides:	apache(mod_perl)
 # What's this mod_perl_hooks for?
 Provides:	perl(mod_perl_hooks)
-%if !%{with internal_test}
+%if %{without internal_test}
 # not sure is this neccessary
 Requires:	perl-Apache-Test = %{apache_test_version}
 %endif
@@ -210,7 +210,7 @@ building XS modules that use mod_perl.
 %setup -q -n mod_perl-%{version}
 %patch0 -p1
 
-%if !%{with internal_test}
+%if %{without internal_test}
 system=$(%{__perl} -MApache::Test -e 'print Apache::Test->VERSION')
 bundled=$(%{__perl} -IApache-Test/lib -MApache::Test -e 'print Apache::Test->VERSION')
 if [ "$system" != "$bundled" ]; then
