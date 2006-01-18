@@ -1,7 +1,7 @@
 # TODO:
 # - separate perl-things from apache libs and configs (needed for some buildings)
 # - separate devel things from runtime things (apache-mod_perl-2.0.2-2 marks perl-ExtUtils-MakeMaker-6.25_08-1 (cap perl(ExtUtils::Install)))
-%bcond_without	internal_test	# use internal Apache-Test
+%bcond_with	internal_test	# use internal Apache-Test
 #
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
@@ -27,7 +27,7 @@ Summary(uk):	Модуль вбудовування ╕нтерпретатора Perl в сервер Apache
 Summary(zh_CN):	сцсз Apache web ╥ЧнЯЁлпР╣д Perl ╫БймЁлпР║ё
 Name:		apache-mod_perl
 Version:	2.0.2
-Release:	5
+Release:	6
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
