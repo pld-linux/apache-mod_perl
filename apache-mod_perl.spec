@@ -3,7 +3,7 @@
 # - separate devel things from runtime things (apache-mod_perl-2.0.2-2 marks perl-ExtUtils-MakeMaker-6.25_08-1 (cap perl(ExtUtils::Install)))
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
-%define	apache_test_version	1.27
+%define	apache_test_version	1.27-1.5
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	Vestavìný interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
