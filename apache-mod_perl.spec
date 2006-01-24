@@ -1,6 +1,8 @@
 # TODO:
 # - separate perl-things from apache libs and configs (needed for some buildings)
 # - separate devel things from runtime things (apache-mod_perl-2.0.2-2 marks perl-ExtUtils-MakeMaker-6.25_08-1 (cap perl(ExtUtils::Install)))
+#
+# Conditional build:
 %bcond_with	internal_test	# use internal Apache-Test
 #
 %include	/usr/lib/rpm/macros.perl
