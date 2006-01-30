@@ -43,11 +43,10 @@ BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel >= 2.3.0
-%if %{without internal_test}
-BuildRequires:	perl-Apache-Test = %{apache_test_version}
-%endif
+%{!?with_internal_test:perl-Apache-Test = %{apache_test_version}}
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
+BuildRequires:	rpmbuild(macros) >= 1.268
 %requires_eq_to	apache apache-devel
 Requires:	apache(modules-api) = %apache_modules_api
 Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
@@ -56,8 +55,7 @@ Provides:	apache(mod_perl)
 Provides:	perl(mod_perl_hooks)
 %if %{without internal_test}
 # not sure is this neccessary
-Requires:	perl-Apache-Test = %{apache_test_version}
-%endif
+%{!?with_internal_test:Requires:	perl-Apache-Test = %{apache_test_version}}
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
 Conflicts:	perl-modules < 1:5.8.6-6
@@ -260,15 +258,11 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_mod_perl.conf
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -f /var/lock/subsys/httpd ]; then
-	/etc/rc.d/init.d/httpd restart 1>&2
-fi
+%service -q httpd restart
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/httpd ]; then
-		/etc/rc.d/init.d/httpd restart 1>&2
-	fi
+	%service -q httpd restart
 fi
 
 %files
