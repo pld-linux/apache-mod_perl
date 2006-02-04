@@ -43,7 +43,7 @@ BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel >= 2.3.0
-%{!?with_internal_test:perl-Apache-Test = %{apache_test_version}}
+%{!?with_internal_test:BuildRequires:	perl-Apache-Test = %{apache_test_version}}
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	rpmbuild(macros) >= 1.268
@@ -53,7 +53,6 @@ Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERS
 Provides:	apache(mod_perl)
 # What's this mod_perl_hooks for?
 Provides:	perl(mod_perl_hooks)
-%if %{without internal_test}
 # not sure is this neccessary
 %{!?with_internal_test:Requires:	perl-Apache-Test = %{apache_test_version}}
 Obsoletes:	mod_perl
