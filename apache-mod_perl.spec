@@ -3,6 +3,7 @@
 # - separate devel things from runtime things (apache-mod_perl-2.0.2-2 marks perl-ExtUtils-MakeMaker-6.25_08-1 (cap perl(ExtUtils::Install)))
 #
 # Conditional build:
+%bcond_without	autodeps	# don't care about perl() deps resolving
 %bcond_with	internal_test	# use internal Apache-Test
 #
 %include	/usr/lib/rpm/macros.perl
@@ -44,6 +45,7 @@ BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel >= 2.3.0
 %{!?with_internal_test:BuildRequires:	perl-Apache-Test = %{apache_test_version}}
+%{?with_autodeps:BuildRequires:	perl-Data-Flow}
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	rpmbuild(macros) >= 1.268
