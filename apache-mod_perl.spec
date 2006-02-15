@@ -253,6 +253,8 @@ install xs/tables/current/ModPerl/* $RPM_BUILD_ROOT%{perl_vendorarch}/ModPerl
 
 rm -rf $RPM_BUILD_ROOT%{perl_vendorarch}/Bundle
 rm -f $RPM_BUILD_ROOT%{_mandir}/man?/Bundle*
+rm -f $RPM_BUILD_ROOT%{perl_archlib}/perllocal.pod
+rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/auto/mod_perl2/.packlist
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_mod_perl.conf
 
 %clean
