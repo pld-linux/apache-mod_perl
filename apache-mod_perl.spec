@@ -8,7 +8,8 @@
 #
 %include	/usr/lib/rpm/macros.perl
 %define	apxs	/usr/sbin/apxs
-%define	apache_test_version	1.27-2
+# NB! leave this without *release*
+%define	apache_test_version	1.27
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	VestavЛnЩ interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -30,7 +31,7 @@ Summary(uk):	Модуль вбудовування ╕нтерпретатора Perl в сервер Apache
 Summary(zh_CN):	сцсз Apache web ╥ЧнЯЁлпР╣д Perl ╫БймЁлпР║ё
 Name:		apache-mod_perl
 Version:	2.0.2
-Release:	7
+Release:	8
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
