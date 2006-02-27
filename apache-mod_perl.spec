@@ -197,8 +197,6 @@ Group:		Development/Libraries
 Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
 Requires:	apache-devel >= 2.0
 Requires:	perl-mod_%{mod_name} = %{epoch}:%{version}-%{release}
-# What's this mod_perl_hooks for?
-Provides:	perl(mod_perl_hooks)
 # not sure is this neccessary
 %{!?with_internal_test:Requires:	perl-Apache-Test = %{apache_test_version}}
 Obsoletes:	mod_perl
