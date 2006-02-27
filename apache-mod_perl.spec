@@ -1,5 +1,4 @@
 # TODO:
-# - separate perl-things from apache libs and configs (needed for some buildings)
 # - separate devel things from runtime things (apache-mod_perl-2.0.2-2 marks perl-ExtUtils-MakeMaker-6.25_08-1 (cap perl(ExtUtils::Install)))
 #
 # Conditional build:
@@ -7,7 +6,8 @@
 %bcond_with	internal_test	# use internal Apache-Test
 #
 %include	/usr/lib/rpm/macros.perl
-%define	apxs	/usr/sbin/apxs
+%define		apxs	/usr/sbin/apxs
+%define		mod_name	perl
 # NB! leave this without *release*
 %define	apache_test_version	1.27
 Summary:	A Perl interpreter for the Apache Web server
@@ -31,7 +31,7 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
 Version:	2.0.2
-Release:	8
+Release:	9
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -50,17 +50,9 @@ BuildRequires:	openldap-devel >= 2.3.0
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	rpmbuild(macros) >= 1.268
-%requires_eq_to	apache apache-devel
 Requires:	apache(modules-api) = %apache_modules_api
-Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
+Requires:	perl-mod_%{mod_name} = %{epoch}:%{version}-%{release}
 Provides:	apache(mod_perl)
-# What's this mod_perl_hooks for?
-Provides:	perl(mod_perl_hooks)
-# not sure is this neccessary
-%{!?with_internal_test:Requires:	perl-Apache-Test = %{apache_test_version}}
-Obsoletes:	mod_perl
-Obsoletes:	mod_perl-common
-Conflicts:	perl-modules < 1:5.8.6-6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # TODO: separate -devel with ExtUtils::Embed and friends?
@@ -202,8 +194,16 @@ Apache web ·þÎñ³ÌÐò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 Summary:	Files needed for building XS modules that use mod_perl
 Summary(pl):	Pliki potrzebne do budowania modu³ów XS korzystaj±cych z mod_perla
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
 Requires:	apache-devel >= 2.0
+Requires:	perl-mod_%{mod_name} = %{epoch}:%{version}-%{release}
+# What's this mod_perl_hooks for?
+Provides:	perl(mod_perl_hooks)
+# not sure is this neccessary
+%{!?with_internal_test:Requires:	perl-Apache-Test = %{apache_test_version}}
+Obsoletes:	mod_perl
+Obsoletes:	mod_perl-common
+Conflicts:	perl-modules < 1:5.8.6-6
 
 %description devel
 The apache-mod_perl-devel package contains the files needed for
@@ -213,8 +213,18 @@ building XS modules that use mod_perl.
 Ten pakiet zawiera pliki potrzebne do budowania modu³ów XS
 korzystaj±cych z mod_perla.
 
+%package -n perl-mod_%{mod_name}
+Summary:	Perl APIs for mod_perl
+Group:		Development/Languages/Perl
+
+%description -n perl-mod_%{mod_name}
+Perl APIs for mod_perl.
+
+%description -n perl-mod_%{mod_name} -l pl
+Perlowe API dla mod_perl.
+
 %prep
-%setup -q -n mod_perl-%{version}
+%setup -q -n mod_%{mod_name}-%{version}
 %patch0 -p1
 
 %if %{without internal_test}
@@ -275,6 +285,8 @@ fi
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*.conf
 %attr(755,root,root) %{_pkglibdir}/*.so
 
+%files -n perl-mod_%{mod_name}
+%defattr(644,root,root,755)
 %{perl_vendorarch}/*.pm
 %{perl_vendorarch}/APR
 %{perl_vendorarch}/Apache2
@@ -289,9 +301,7 @@ fi
 %{perl_vendorarch}/auto/*/*/*.ix
 %{perl_vendorarch}/auto/*/*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/*/*/*.so
-
 %{perl_vendorarch}/auto/Apache2/typemap
-
 %{_mandir}/man?/*
 
 %files devel
