@@ -31,7 +31,7 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
 Version:	2.0.2
-Release:	9
+Release:	10
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -50,6 +50,8 @@ BuildRequires:	openldap-devel >= 2.3.0
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	rpmbuild(macros) >= 1.268
+# older apache-mod_perl could make bad autodeps to perl-mod_perl
+BuildConflicts:	apache-mod_perl < 1:2.0.2-9
 Requires:	apache(modules-api) = %apache_modules_api
 Requires:	perl-mod_%{mod_name} = %{epoch}:%{version}-%{release}
 Provides:	apache(mod_perl)
@@ -194,8 +196,8 @@ Apache web ·þÎñ³ÌÐò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
 Summary:	Files needed for building XS modules that use mod_perl
 Summary(pl):	Pliki potrzebne do budowania modu³ów XS korzystaj±cych z mod_perla
 Group:		Development/Libraries
-Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
 Requires:	apache-devel >= 2.0
+Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
 Requires:	perl-mod_%{mod_name} = %{epoch}:%{version}-%{release}
 # not sure is this neccessary
 %{!?with_internal_test:Requires:	perl-Apache-Test = %{apache_test_version}}
