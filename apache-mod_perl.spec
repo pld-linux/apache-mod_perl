@@ -215,13 +215,14 @@ korzystaj±cych z mod_perla.
 
 %package -n perl-mod_%{mod_name}
 Summary:	Perl APIs for mod_perl
+Summary(pl):	Perlowe API dla mod_perla
 Group:		Development/Languages/Perl
 
 %description -n perl-mod_%{mod_name}
 Perl APIs for mod_perl.
 
 %description -n perl-mod_%{mod_name} -l pl
-Perlowe API dla mod_perl.
+Perlowe API dla mod_perla.
 
 %prep
 %setup -q -n mod_%{mod_name}-%{version}
