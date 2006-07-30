@@ -45,7 +45,7 @@ BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel >= 2.3.0
-%{!?with_internal_test:BuildRequires:	perl-Apache-Test = %{apache_test_version}}
+%{!?with_internal_test:BuildRequires:	perl-Apache-Test = 1:%{apache_test_version}}
 %{?with_autodeps:BuildRequires:	perl-Data-Flow}
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
