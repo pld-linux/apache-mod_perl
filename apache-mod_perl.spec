@@ -3,13 +3,12 @@
 #
 # Conditional build:
 %bcond_without	autodeps	# don't care about perl() deps resolving
-%bcond_with	internal_test	# use internal Apache-Test
 #
 %include	/usr/lib/rpm/macros.perl
 %define		apxs	/usr/sbin/apxs
 %define		mod_name	perl
 # NB! leave this without *release*
-%define	apache_test_version	1.28
+%define	apache_test_version	1.27
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	Vestavìný interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -45,7 +44,7 @@ BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel >= 2.3.0
-%{!?with_internal_test:BuildRequires:	perl-Apache-Test = 1:%{apache_test_version}}
+BuildRequires:	perl-Apache-Test >= 1:%{apache_test_version}
 %{?with_autodeps:BuildRequires:	perl-Data-Flow}
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
@@ -200,7 +199,7 @@ Requires:	apache-devel >= 2.0
 Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
 Requires:	perl-mod_%{mod_name} = %{epoch}:%{version}-%{release}
 # not sure is this neccessary
-%{!?with_internal_test:Requires:	perl-Apache-Test = %{apache_test_version}}
+Requires:	perl-Apache-Test = %{apache_test_version}
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
 Conflicts:	perl-modules < 1:5.8.6-6
@@ -228,15 +227,12 @@ Perlowe API dla mod_perla.
 %setup -q -n mod_%{mod_name}-%{version}
 %patch0 -p1
 
-%if %{without internal_test}
-system=$(%{__perl} -MApache::Test -e 'print Apache::Test->VERSION')
 bundled=$(%{__perl} -IApache-Test/lib -MApache::Test -e 'print Apache::Test->VERSION')
-if [ "$system" != "$bundled" ]; then
-	: Need Apache::Test version $bundled installed in system. please fix.
+if [ "%apache_test_version" != "$bundled" ]; then
+	: "%%define apache_test_version to $bundled and retry."
 	exit 1
 fi
 rm -rf Apache-Test
-%endif
 
 %build
 %{__perl} Makefile.PL \
