@@ -30,7 +30,7 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
 Version:	2.0.2
-Release:	12
+Release:	13
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -197,6 +197,7 @@ Summary(pl):	Pliki potrzebne do budowania modu³ów XS korzystaj±cych z mod_perla
 Group:		Development/Libraries
 Requires:	apache-devel >= 2.0
 Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
+Requires:	perl-Apache-Test
 Requires:	perl-mod_%{mod_name} = %{epoch}:%{version}-%{release}
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
