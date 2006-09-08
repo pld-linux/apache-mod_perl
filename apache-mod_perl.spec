@@ -3,6 +3,7 @@
 #
 # Conditional build:
 %bcond_without	autodeps	# don't care about perl() deps resolving
+%bcond_with	tests		# perform "make test"
 #
 %include	/usr/lib/rpm/macros.perl
 %define		apxs	/usr/sbin/apxs
@@ -51,6 +52,15 @@ BuildRequires:	perl-Apache-Test >= 1:%{apache_test_version}
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	rpmbuild(macros) >= 1.268
+%if %{with tests}
+BuildRequires:	apache-mod_auth_basic
+BuildRequires:	apache-mod_authz_host
+BuildRequires:	apache-mod_deflate
+BuildRequires:	apache-mod_include
+BuildRequires:	apache-mod_mime
+BuildRequires:	apache-mod_proxy
+BuildRequires:	perl-CGI >= 3.22
+%endif
 # older apache-mod_perl could make bad autodeps to perl-mod_perl
 BuildConflicts:	apache-mod_perl < 1:2.0.2-9
 Requires:	apache(modules-api) = %apache_modules_api
@@ -247,6 +257,8 @@ rm -rf Apache-Test
 	MODPERL_OPTIMIZE="%{rpmcflags}" \
 	CC="%{__cc}" \
 	MP_APXS=%{apxs}
+
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
