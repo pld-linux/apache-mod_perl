@@ -56,6 +56,7 @@ BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	apache-mod_auth_basic
 BuildRequires:	apache-mod_authz_host
 BuildRequires:	apache-mod_deflate
+BuildRequires:	apache-mod_env
 BuildRequires:	apache-mod_include
 BuildRequires:	apache-mod_mime
 BuildRequires:	apache-mod_proxy
