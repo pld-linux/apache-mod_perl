@@ -8,7 +8,7 @@
 %define		apxs	/usr/sbin/apxs
 %define		mod_name	perl
 # NB! leave this without *release*
-%define	apache_test_version	1.27
+%define	apache_test_version	1.29
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs):	Vestavìný interpret Perlu pro WWW server Apache
 Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -29,13 +29,15 @@ Summary(sv):	En inbyggd Perl-interpretator för webbservern Apache
 Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
-Version:	2.0.2
-Release:	13
+%define	_rc	-rc1
+Version:	2.0.3
+Release:	0.%(echo %{_rc} | sed -e s/-//).1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
-Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-# Source0-md5:	ad0a509fd34e3b8452887d80a1d45dea
+#Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
+Source0:	http://people.apache.org/~pgollucci/mp2/mod_perl-%{version}%{_rc}.tar.gz
+# Source0-md5:	794dfb58f4219c76f600e8153d5cc347
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
@@ -223,7 +225,7 @@ Perl APIs for mod_perl.
 Perlowe API dla mod_perla.
 
 %prep
-%setup -q -n mod_%{mod_name}-%{version}
+%setup -q -n mod_%{mod_name}-%{version}%{_rc}
 %patch0 -p1
 
 bundled=$(%{__perl} -IApache-Test/lib -MApache::Test -e 'print Apache::Test->VERSION')
