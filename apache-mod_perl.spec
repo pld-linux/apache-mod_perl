@@ -30,15 +30,13 @@ Summary(sv):	En inbyggd Perl-interpretator för webbservern Apache
 Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
-%define	_rc	-rc1
 Version:	2.0.3
-Release:	0.%(echo %{_rc} | sed -e s/-//).1
+Release:	1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
-#Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-Source0:	http://people.apache.org/~pgollucci/mp2/mod_perl-%{version}%{_rc}.tar.gz
-# Source0-md5:	794dfb58f4219c76f600e8153d5cc347
+Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
+# Source0-md5:	b40e2adf67c6be15a0041af1c67b6997
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
@@ -236,7 +234,7 @@ Perl APIs for mod_perl.
 Perlowe API dla mod_perla.
 
 %prep
-%setup -q -n mod_%{mod_name}-%{version}%{_rc}
+%setup -q -n mod_%{mod_name}-%{version}
 %patch0 -p1
 
 bundled=$(%{__perl} -IApache-Test/lib -MApache::Test -e 'print Apache::Test->VERSION')
