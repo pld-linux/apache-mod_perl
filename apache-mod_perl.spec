@@ -11,24 +11,24 @@
 # NB! leave this without *release*
 %define	apache_test_version	1.29
 Summary:	A Perl interpreter for the Apache Web server
-Summary(cs):	Vestavìný interpret Perlu pro WWW server Apache
-Summary(da):	En indbygget Perl-fortolker for webtjeneren Apache
-Summary(de):	Ein eingebetteter Perl-Interpreter für den Apache Web-Server
-Summary(es):	Intérprete Perl para el servidor Web Apache
-Summary(fr):	Interpréteur Perl intégré pour le serveur Web Apache
-Summary(id):	Interpreter Perl untuk web server Apache
-Summary(is):	Perl túlkur fyrir Apache vefþjóninn
-Summary(it):	Interprete Perl integrato per il server Web Apache
-Summary(ja):	Apache Web ¥µ¡¼¥Ð¡¼ÍÑ¤ÎÁÈ¹þ¤ß Perl ¥¤¥ó¥¿¡¼¥×¥ê¥¿
-Summary(nb):	En Perl-fortolker for webtjeneren Apache
-Summary(pl):	Interpreter Perla dla serwera WWW Apache
-Summary(pt):	Um interpretador de Perl embebido para o servidor Web Apache
-Summary(ru):	÷ÓÔÒÏÅÎÎÙÊ ÉÎÔÅÒÐÒÅÔÁÔÏÒ Perl ÄÌÑ WWW-ÓÅÒ×ÅÒÁ Apache
-Summary(sk):	Interpreter jazyka Perl pre webový server Apache
-Summary(sl):	Vkljuèeni perlovski tolmaè za spletni stre¾nik Apache
-Summary(sv):	En inbyggd Perl-interpretator för webbservern Apache
-Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
-Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
+Summary(cs.UTF-8):   VestavÄ›nÃ½ interpret Perlu pro WWW server Apache
+Summary(da.UTF-8):   En indbygget Perl-fortolker for webtjeneren Apache
+Summary(de.UTF-8):   Ein eingebetteter Perl-Interpreter fÃ¼r den Apache Web-Server
+Summary(es.UTF-8):   IntÃ©rprete Perl para el servidor Web Apache
+Summary(fr.UTF-8):   InterprÃ©teur Perl intÃ©grÃ© pour le serveur Web Apache
+Summary(id.UTF-8):   Interpreter Perl untuk web server Apache
+Summary(is.UTF-8):   Perl tÃºlkur fyrir Apache vefÃ¾jÃ³ninn
+Summary(it.UTF-8):   Interprete Perl integrato per il server Web Apache
+Summary(ja.UTF-8):   Apache Web ã‚µãƒ¼ãƒãƒ¼ç”¨ã®çµ„è¾¼ã¿ Perl ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
+Summary(nb.UTF-8):   En Perl-fortolker for webtjeneren Apache
+Summary(pl.UTF-8):   Interpreter Perla dla serwera WWW Apache
+Summary(pt.UTF-8):   Um interpretador de Perl embebido para o servidor Web Apache
+Summary(ru.UTF-8):   Ð’ÑÑ‚Ñ€Ð¾ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½Ñ‚ÐµÑ€Ð¿Ñ€ÐµÑ‚Ð°Ñ‚Ð¾Ñ€ Perl Ð´Ð»Ñ WWW-ÑÐµÑ€Ð²ÐµÑ€Ð° Apache
+Summary(sk.UTF-8):   Interpreter jazyka Perl pre webovÃ½ server Apache
+Summary(sl.UTF-8):   VkljuÄeni perlovski tolmaÄ za spletni streÅ¾nik Apache
+Summary(sv.UTF-8):   En inbyggd Perl-interpretator fÃ¶r webbservern Apache
+Summary(uk.UTF-8):   ÐœÐ¾Ð´ÑƒÐ»ÑŒ Ð²Ð±ÑƒÐ´Ð¾Ð²ÑƒÐ²Ð°Ð½Ð½Ñ Ñ–Ð½Ñ‚ÐµÑ€Ð¿Ñ€ÐµÑ‚Ð°Ñ‚Ð¾Ñ€Ð° Perl Ð² ÑÐµÑ€Ð²ÐµÑ€ Apache
+Summary(zh_CN.UTF-8):   ç”¨äºŽ Apache web æœåŠ¡ç¨‹åºçš„ Perl è§£é‡Šç¨‹åºã€‚
 Name:		apache-mod_perl
 Version:	2.0.3
 Release:	1
@@ -80,40 +80,40 @@ an object-oriented Perl interface for Apache's C language API. The end
 result is a quicker CGI script turnaround process, since no external
 Perl interpreter has to be started.
 
-%description -l cs
-Modul mod_perl zaèleòuje interpret Perlu do WWW serveru Apache, tak¾e
-WWW server mù¾e pøímo provádìt programy v Perlu. Mod_perl pøipojuje
-bìhovou knihovnu Perlu do Apache WWW serveru a poskytuje objektovì
-orientované perlovské rozhraní pro API serveru Apache. Výsledkem je
-rychlej¹í start CGI skriptù, proto¾e nemusí být startován externí
+%description -l cs.UTF-8
+Modul mod_perl zaÄleÅˆuje interpret Perlu do WWW serveru Apache, takÅ¾e
+WWW server mÅ¯Å¾e pÅ™Ã­mo provÃ¡dÄ›t programy v Perlu. Mod_perl pÅ™ipojuje
+bÄ›hovou knihovnu Perlu do Apache WWW serveru a poskytuje objektovÄ›
+orientovanÃ© perlovskÃ© rozhranÃ­ pro API serveru Apache. VÃ½sledkem je
+rychlejÅ¡Ã­ start CGI skriptÅ¯, protoÅ¾e nemusÃ­ bÃ½t startovÃ¡n externÃ­
 interpret Perlu.
 
-%description -l de
+%description -l de.UTF-8
 Mod_perl integriert einen Perl-Interpreter in den Apache Web-Server,
-so dass dieser Perl-Code direkt ausführen kann. Das Programm verknüpft
+so dass dieser Perl-Code direkt ausfÃ¼hren kann. Das Programm verknÃ¼pft
 die Perl-Runtime-Bibliothek mit dem Apache Web-Sever und stellt eine
-objektorientierte Perl-Benutzeroberfläche für die C-API des
-Apache-Servers bereit. Das Resultat ist eine schnellere Ausführung von
+objektorientierte Perl-BenutzeroberflÃ¤che fÃ¼r die C-API des
+Apache-Servers bereit. Das Resultat ist eine schnellere AusfÃ¼hrung von
 CGI-Skripten, da kein externer Perl-Interpreter gestartet werden muss.
 
-%description -l es
-Mod_perl incluye un intérprete Perl en el servidor Apache, de manera
-que se puede ejecutar el código Perl directamente desde el servidor
+%description -l es.UTF-8
+Mod_perl incluye un intÃ©rprete Perl en el servidor Apache, de manera
+que se puede ejecutar el cÃ³digo Perl directamente desde el servidor
 Web. Mod_perl enumera las bibliotecas runtime del Perl al Web servidor
 Apache y proporciona una interfaz Perl object-oriented para las API
-del lenguaje C. De tal modo que se obtiene una ejecución más rápida de
-los script CGI sin necesidad de apoyarse en un intérprete Perl.
+del lenguaje C. De tal modo que se obtiene una ejecuciÃ³n mÃ¡s rÃ¡pida de
+los script CGI sin necesidad de apoyarse en un intÃ©rprete Perl.
 
-%description -l fr
-Mod_perl incorpore un interpréteur Perl dans le serveur Web Apache, de
-manière à ce que le serveur Web Apache puisse exécuter directement du
-code Perl. Mod_perl lie la bibliothèque d'exécution Perl au serveur
-Web Apache et fournit une interface Perl orientée objet pour l'API en
-langage C d'Apache. Le résultat final est une exécution des scripts
-CGI plus rapide, du fait qu'aucun interpréteur Perl externe ne doit
-être démarré.
+%description -l fr.UTF-8
+Mod_perl incorpore un interprÃ©teur Perl dans le serveur Web Apache, de
+maniÃ¨re Ã  ce que le serveur Web Apache puisse exÃ©cuter directement du
+code Perl. Mod_perl lie la bibliothÃ¨que d'exÃ©cution Perl au serveur
+Web Apache et fournit une interface Perl orientÃ©e objet pour l'API en
+langage C d'Apache. Le rÃ©sultat final est une exÃ©cution des scripts
+CGI plus rapide, du fait qu'aucun interprÃ©teur Perl externe ne doit
+Ãªtre dÃ©marrÃ©.
 
-%description -l id
+%description -l id.UTF-8
 Mod_perl memasukkan interpreter Perl ke dalam web server Apache,
 sehingga Apache dapat secara langsung menjalankan kode Perl. Mod_perl
 me-link runtime library Perl ke dalam web server Apache dan
@@ -121,90 +121,90 @@ menyediakan antarmuka Perl yang object-oriented untuk API Apache yang
 ditulis dalam C. Hasilnya, respon proses CGI lebih cepat, karena tidak
 perlu lagi menjalankan interpreter Perl eksternal.
 
-%description -l is
-Mod_perl vinnur með perl á Apache vefþjóninum svo að Apache geti beint
-keyrt Perl kóða. Mod_perl tengir Perl keyrslu söfnin við Apache
-vefþjóninn og býður upp á hlutbundið Perl fyrir Apache C
-forritunarmáls API. Það sem græðist er Hraðari CGI scriptur þar sem
-það er engar úttengd Perl köll.
+%description -l is.UTF-8
+Mod_perl vinnur meÃ° perl Ã¡ Apache vefÃ¾jÃ³ninum svo aÃ° Apache geti beint
+keyrt Perl kÃ³Ã°a. Mod_perl tengir Perl keyrslu sÃ¶fnin viÃ° Apache
+vefÃ¾jÃ³ninn og bÃ½Ã°ur upp Ã¡ hlutbundiÃ° Perl fyrir Apache C
+forritunarmÃ¡ls API. ÃžaÃ° sem grÃ¦Ã°ist er HraÃ°ari CGI scriptur Ã¾ar sem
+Ã¾aÃ° er engar Ãºttengd Perl kÃ¶ll.
 
-%description -l it
+%description -l it.UTF-8
 Mod_perl incorpora un interprete Perl nel server web Apache, in modo
 che quest'ultimo possa eseguire direttamente il codice Perl. Mod_perl
 collega la libreria runtime di Perl al server web Apache e fornisce
 un'interfaccia Perl orientata all'oggetto per le API in linguaggio C
 di Apache. In tal modo si velocizza il processo di turnaround degli
-script CGI, poiché non è più necessario appoggiarsi ad un interprete
+script CGI, poichÃ© non Ã¨ piÃ¹ necessario appoggiarsi ad un interprete
 Perl esterno.
 
-%description -l ja
-mod_perl ¤Ï¡¢Apache Web ¥µ¡¼¥Ð¡¼¤¬Ä¾ÀÜ Perl ¥³¡¼¥É¤ò¼Â¹Ô¤Ç¤­¤ë¤è¤¦¤Ë¡¢
-Perl ¥¤¥ó¥¿¡¼¥×¥ê¥¿¤ò Apache Web ¥µ¡¼¥Ð¡¼¤ËÁÈ¤ß¹þ¤ß¤Þ¤¹¡£mod_perl ¤Ï¡¢
-Perl ¤Î¥é¥ó¥¿¥¤¥à¥é¥¤¥Ö¥é¥ê¤ò Apache Web ¥µ¡¼¥Ð¡¼¤Ë¥ê¥ó¥¯¤µ¤»¡¢Apache
-¤Î C ¸À¸ì API ÍÑ¤Î¥ª¥Ö¥¸¥§¥¯¥È»Ø¸þ¤Î Perl ¥¤¥ó¥¿¡¼¥Õ¥§¥¤¥¹¤òÄó¶¡
-¤·¤Þ¤¹¡£¤½¤Î·ë²Ì¡¢³°Éô¤Î Perl ¥¤¥ó¥¿¡¼¥×¥ê¥¿¤¬µ¯Æ°¤¹¤ëÉ¬Í×¤¬¤Ê¤¤¤¿¤á¡¢
-CGI ¥¹¥¯¥ê¥×¥È¤Î¥¿¡¼¥ó¥¢¥é¥¦¥ó¥É¥×¥í¥»¥¹¤¬Â®¤¯¤Ê¤ê¤Þ¤¹¡£
+%description -l ja.UTF-8
+mod_perl ã¯ã€Apache Web ã‚µãƒ¼ãƒãƒ¼ãŒç›´æŽ¥ Perl ã‚³ãƒ¼ãƒ‰ã‚’å®Ÿè¡Œã§ãã‚‹ã‚ˆã†ã«ã€
+Perl ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ã‚’ Apache Web ã‚µãƒ¼ãƒãƒ¼ã«çµ„ã¿è¾¼ã¿ã¾ã™ã€‚mod_perl ã¯ã€
+Perl ã®ãƒ©ãƒ³ã‚¿ã‚¤ãƒ ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ Apache Web ã‚µãƒ¼ãƒãƒ¼ã«ãƒªãƒ³ã‚¯ã•ã›ã€Apache
+ã® C è¨€èªž API ç”¨ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæŒ‡å‘ã® Perl ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã‚’æä¾›
+ã—ã¾ã™ã€‚ãã®çµæžœã€å¤–éƒ¨ã® Perl ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ãŒèµ·å‹•ã™ã‚‹å¿…è¦ãŒãªã„ãŸã‚ã€
+CGI ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ©ã‚¦ãƒ³ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹ãŒé€Ÿããªã‚Šã¾ã™ã€‚
 
-%description -l pl
-Mod_perl jest modu³em, który wyposa¿a serwer Apache w interpreter
-Perla, umo¿liwiaj±c w ten sposób bezpo¶rednie wykonywanie kodu Perla
-przez serwer bez potrzeby anga¿owania zewnêtrznego interpretera, co
-przyspiesza procesy zwi±zane z uruchamianiem skryptów CGI.
+%description -l pl.UTF-8
+Mod_perl jest moduÅ‚em, ktÃ³ry wyposaÅ¼a serwer Apache w interpreter
+Perla, umoÅ¼liwiajÄ…c w ten sposÃ³b bezpoÅ›rednie wykonywanie kodu Perla
+przez serwer bez potrzeby angaÅ¼owania zewnÄ™trznego interpretera, co
+przyspiesza procesy zwiÄ…zane z uruchamianiem skryptÃ³w CGI.
 
-%description -l pt
+%description -l pt.UTF-8
 O mod_perl incorpora um interpretador de Perl no servidor Web Apache,
 para que assim o servidor Web Apache possa executar directamente
-código em Perl. O mod_perl associa a biblioteca de execução do Perl
+cÃ³digo em Perl. O mod_perl associa a biblioteca de execuÃ§Ã£o do Perl
 com o servidor Web Apache e oferece uma interface orientada por
-objectos do Perl para a API de C do Apache. O resultado final é um
-processo de torneamento dos 'scripts' CGI mais rápido, dado que não
+objectos do Perl para a API de C do Apache. O resultado final Ã© um
+processo de torneamento dos 'scripts' CGI mais rÃ¡pido, dado que nÃ£o
 tem que se iniciar um interpretador de Perl externo.
 
-%description -l ru
-Mod_perl ×ÓÔÒÁÉ×ÁÅÔ Perl-ÉÎÔÒÅÐÒÅÔÁÔÏÒ × WWW-ÓÅÒ×ÅÒ Apache, ÔÁË ÞÔÏ
-ÜÔÏÔ ÓÅÒ×ÅÒ ÍÏÖÅÔ ÎÁÐÒÑÍÕÀ ÒÁÂÏÔÁÔØ Ó ËÏÄÏÍ Perl. Mod_perl Ó×ÑÚÙ×ÁÅÔ
-ÂÉÂÌÉÏÔÅËÕ ÒÅÁÌØÎÏÇÏ ×ÒÅÍÅÎÉ Perl Ó ÓÅÒ×ÅÒÏÍ Apache É ÓÏÄÅÒÖÉÔ
-ÏÂßÅËÔÎÏ-ÏÒÉÅÎÔÉÒÏ×ÁÎÎÙÊ ÉÎÔÅÒÆÅÊÓ Perl API ÑÚÙËÁ Apache C. ëÏÎÅÞÎÙÊ
-ÒÅÚÕÌØÔÁÔ - ÕÓËÏÒÅÎÎÁÑ ÒÁÂÏÔÁ ÓÏ ÓËÒÉÐÔÁÍÉ CGI.
+%description -l ru.UTF-8
+Mod_perl Ð²ÑÑ‚Ñ€Ð°Ð¸Ð²Ð°ÐµÑ‚ Perl-Ð¸Ð½Ñ‚Ñ€ÐµÐ¿Ñ€ÐµÑ‚Ð°Ñ‚Ð¾Ñ€ Ð² WWW-ÑÐµÑ€Ð²ÐµÑ€ Apache, Ñ‚Ð°Ðº Ñ‡Ñ‚Ð¾
+ÑÑ‚Ð¾Ñ‚ ÑÐµÑ€Ð²ÐµÑ€ Ð¼Ð¾Ð¶ÐµÑ‚ Ð½Ð°Ð¿Ñ€ÑÐ¼ÑƒÑŽ Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ñ‚ÑŒ Ñ ÐºÐ¾Ð´Ð¾Ð¼ Perl. Mod_perl ÑÐ²ÑÐ·Ñ‹Ð²Ð°ÐµÑ‚
+Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÑƒ Ñ€ÐµÐ°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð¸ Perl Ñ ÑÐµÑ€Ð²ÐµÑ€Ð¾Ð¼ Apache Ð¸ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ñ‚
+Ð¾Ð±ÑŠÐµÐºÑ‚Ð½Ð¾-Ð¾Ñ€Ð¸ÐµÐ½Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹Ñ Perl API ÑÐ·Ñ‹ÐºÐ° Apache C. ÐšÐ¾Ð½ÐµÑ‡Ð½Ñ‹Ð¹
+Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ - ÑƒÑÐºÐ¾Ñ€ÐµÐ½Ð½Ð°Ñ Ñ€Ð°Ð±Ð¾Ñ‚Ð° ÑÐ¾ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð°Ð¼Ð¸ CGI.
 
-%description -l sk
-Mod_perl zaèleòuje interpreter Perlu do webového servera Apache;
-server Apache potom mô¾e priamo vykonáva» príkazy Perlu. Mod_perl
-zlinkuje kni¾nicu Perlu s webovým serverom Apache a poskytne tak
-objektovo orietované rozhranie Perlu pre aplikaèné rozhranie servera
-Apache v jazyku C. Výsledkom je rýchlej¹ie vykonanie CGI skriptu, bez
-akéhokoµvek spustenia externého interpretera jazyka Perl.
+%description -l sk.UTF-8
+Mod_perl zaÄleÅˆuje interpreter Perlu do webovÃ©ho servera Apache;
+server Apache potom mÃ´Å¾e priamo vykonÃ¡vaÅ¥ prÃ­kazy Perlu. Mod_perl
+zlinkuje kniÅ¾nicu Perlu s webovÃ½m serverom Apache a poskytne tak
+objektovo orietovanÃ© rozhranie Perlu pre aplikaÄnÃ© rozhranie servera
+Apache v jazyku C. VÃ½sledkom je rÃ½chlejÅ¡ie vykonanie CGI skriptu, bez
+akÃ©hokoÄ¾vek spustenia externÃ©ho interpretera jazyka Perl.
 
-%description -l sv
-Mod_perl införlivar en Perl-interpretator i webbservern Apache, så att
-webbervern Apach kan köra Perl-kod direkt. Mod_perl länkar in Perls
-körtidsbibliotek i webbservern Apache och ger ett objektorienterat
-Perl-gränssnitt till Apaches API i språket C. Slutresultatet är en
-snabbare processomsättning av CGI-skript, eftersom ingen extern
-Perl-interpretator behöver startas.
+%description -l sv.UTF-8
+Mod_perl infÃ¶rlivar en Perl-interpretator i webbservern Apache, sÃ¥ att
+webbervern Apach kan kÃ¶ra Perl-kod direkt. Mod_perl lÃ¤nkar in Perls
+kÃ¶rtidsbibliotek i webbservern Apache och ger ett objektorienterat
+Perl-grÃ¤nssnitt till Apaches API i sprÃ¥ket C. Slutresultatet Ã¤r en
+snabbare processomsÃ¤ttning av CGI-skript, eftersom ingen extern
+Perl-interpretator behÃ¶ver startas.
 
-%description -l uk
-ðÒÏÅËÔ ¦ÎÔÅÇÒÁÃ¦§ Apache ÔÁ Perl ÄÏÚ×ÏÌÑ¤ ×ÁÍ ×ÉËÏÒÉÓÔÏ×Õ×ÁÔÉ ×ÓÀ
-ÐÏÔÕÖÎ¦ÓÔØ ÍÏ×É ÐÒÏÇÒÁÍÕ×ÁÎÎÑ Perl ÔÁ web-ÓÅÒ×ÅÒÕ Apache. ãÅ
-ÄÏÓÑÇÁ¤ÔØÓÑ ÛÌÑÈÏÍ ×ÂÕÄÏ×Õ×ÁÎÎÑ Â¦ÂÌ¦ÏÔÅË Perl ×ÓÅÒÅÄÉÎÕ ÓÅÒ×ÅÒÁ
-Apache ÞÅÒÅÚ DSO ÔÁ ÎÁÄÁÎÎÑ ÏÂ'¤ËÔÎÏ-ÏÒ¦¤ÎÔÏ×ÁÎÉÈ Perl-Â¦ÂÌ¦ÏÔÅË ÄÌÑ
-ÄÏÓÔÕÐÕ ÄÏ Apache API.
+%description -l uk.UTF-8
+ÐŸÑ€Ð¾ÐµÐºÑ‚ Ñ–Ð½Ñ‚ÐµÐ³Ñ€Ð°Ñ†Ñ–Ñ— Apache Ñ‚Ð° Perl Ð´Ð¾Ð·Ð²Ð¾Ð»ÑÑ” Ð²Ð°Ð¼ Ð²Ð¸ÐºÐ¾Ñ€Ð¸ÑÑ‚Ð¾Ð²ÑƒÐ²Ð°Ñ‚Ð¸ Ð²ÑÑŽ
+Ð¿Ð¾Ñ‚ÑƒÐ¶Ð½Ñ–ÑÑ‚ÑŒ Ð¼Ð¾Ð²Ð¸ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼ÑƒÐ²Ð°Ð½Ð½Ñ Perl Ñ‚Ð° web-ÑÐµÑ€Ð²ÐµÑ€Ñƒ Apache. Ð¦Ðµ
+Ð´Ð¾ÑÑÐ³Ð°Ñ”Ñ‚ÑŒÑÑ ÑˆÐ»ÑÑ…Ð¾Ð¼ Ð²Ð±ÑƒÐ´Ð¾Ð²ÑƒÐ²Ð°Ð½Ð½Ñ Ð±Ñ–Ð±Ð»Ñ–Ð¾Ñ‚ÐµÐº Perl Ð²ÑÐµÑ€ÐµÐ´Ð¸Ð½Ñƒ ÑÐµÑ€Ð²ÐµÑ€Ð°
+Apache Ñ‡ÐµÑ€ÐµÐ· DSO Ñ‚Ð° Ð½Ð°Ð´Ð°Ð½Ð½Ñ Ð¾Ð±'Ñ”ÐºÑ‚Ð½Ð¾-Ð¾Ñ€Ñ–Ñ”Ð½Ñ‚Ð¾Ð²Ð°Ð½Ð¸Ñ… Perl-Ð±Ñ–Ð±Ð»Ñ–Ð¾Ñ‚ÐµÐº Ð´Ð»Ñ
+Ð´Ð¾ÑÑ‚ÑƒÐ¿Ñƒ Ð´Ð¾ Apache API.
 
-ãÅ ÄÏÓÑÇÁ¤ÔØÓÑ ÚÁ ÄÏÐÏÍÏÇÏÀ mod_perl'Á, ËÏÔÒÉÊ ÄÏÚ×ÏÌÑ¤ ÓÔ×ÏÒÀ×ÁÔÉ
-ÍÏÄÕÌ¦ ÄÌÑ Apache ÂÅÚÐÏÓÅÒÅÄÎØÏ ÎÁ ÍÏ×¦ Perl. ëÒ¦Í ÃØÏÇÏ, ÃÅ ÄÏÚ×ÏÌÑ¤
-ÕÎÉËÎÕÔÉ ÎÁËÌÁÄÎÉÈ ×ÉÔÒÁÔ ÎÁ ÚÁ×ÁÎÔÁÖÅÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl ÐÒÉ
-ÏÂÒÏÂÃ¦ ËÏÖÎÏÇÏ ÚÁÐÉÔÕ.
+Ð¦Ðµ Ð´Ð¾ÑÑÐ³Ð°Ñ”Ñ‚ÑŒÑÑ Ð·Ð° Ð´Ð¾Ð¿Ð¾Ð¼Ð¾Ð³Ð¾ÑŽ mod_perl'Ð°, ÐºÐ¾Ñ‚Ñ€Ð¸Ð¹ Ð´Ð¾Ð·Ð²Ð¾Ð»ÑÑ” ÑÑ‚Ð²Ð¾Ñ€ÑŽÐ²Ð°Ñ‚Ð¸
+Ð¼Ð¾Ð´ÑƒÐ»Ñ– Ð´Ð»Ñ Apache Ð±ÐµÐ·Ð¿Ð¾ÑÐµÑ€ÐµÐ´Ð½ÑŒÐ¾ Ð½Ð° Ð¼Ð¾Ð²Ñ– Perl. ÐšÑ€Ñ–Ð¼ Ñ†ÑŒÐ¾Ð³Ð¾, Ñ†Ðµ Ð´Ð¾Ð·Ð²Ð¾Ð»ÑÑ”
+ÑƒÐ½Ð¸ÐºÐ½ÑƒÑ‚Ð¸ Ð½Ð°ÐºÐ»Ð°Ð´Ð½Ð¸Ñ… Ð²Ð¸Ñ‚Ñ€Ð°Ñ‚ Ð½Ð° Ð·Ð°Ð²Ð°Ð½Ñ‚Ð°Ð¶ÐµÐ½Ð½Ñ Ñ–Ð½Ñ‚ÐµÑ€Ð¿Ñ€ÐµÑ‚Ð°Ñ‚Ð¾Ñ€Ð° Perl Ð¿Ñ€Ð¸
+Ð¾Ð±Ñ€Ð¾Ð±Ñ†Ñ– ÐºÐ¾Ð¶Ð½Ð¾Ð³Ð¾ Ð·Ð°Ð¿Ð¸Ñ‚Ñƒ.
 
-%description -l zh_CN
-Mod_perl ½« Perl ½âÊÍ³ÌÐòÓë Apache web ·þÎñ³ÌÐò½áºÏÔÚÒ»Æð£¬
-ÒÔ±ãºóÕß¿ÉÒÔÖ±½ÓÖ´ÐÐ Perl ´úÂë¡£ Mod_perl ½« Perl ÔËÐÐÊ±¼ä³ÌÐò¿âÁ´½ÓÖÁ
-Apache web ·þÎñ³ÌÐò£¬ ²¢Îª Apache µÄ C ÓïÑÔ API Ìá¹©ÃæÏò¶ÔÏóµÄ Perl
-½Ó¿Ú¡£ ÓÉÓÚ²»±ØÆô¶¯ÈÎºÎÍâ²¿ Perl ½âÊÍ³ÌÐò£¬Òò´Ë»áÊ¹ CGI
-½Å±¾»Ø×ª¹ý³Ì¸üÎª¿ìËÙ¡£
+%description -l zh_CN.UTF-8
+Mod_perl å°† Perl è§£é‡Šç¨‹åºä¸Ž Apache web æœåŠ¡ç¨‹åºç»“åˆåœ¨ä¸€èµ·ï¼Œ
+ä»¥ä¾¿åŽè€…å¯ä»¥ç›´æŽ¥æ‰§è¡Œ Perl ä»£ç ã€‚ Mod_perl å°† Perl è¿è¡Œæ—¶é—´ç¨‹åºåº“é“¾æŽ¥è‡³
+Apache web æœåŠ¡ç¨‹åºï¼Œ å¹¶ä¸º Apache çš„ C è¯­è¨€ API æä¾›é¢å‘å¯¹è±¡çš„ Perl
+æŽ¥å£ã€‚ ç”±äºŽä¸å¿…å¯åŠ¨ä»»ä½•å¤–éƒ¨ Perl è§£é‡Šç¨‹åºï¼Œå› æ­¤ä¼šä½¿ CGI
+è„šæœ¬å›žè½¬è¿‡ç¨‹æ›´ä¸ºå¿«é€Ÿã€‚
 
 %package devel
 Summary:	Files needed for building XS modules that use mod_perl
-Summary(pl):	Pliki potrzebne do budowania modu³ów XS korzystaj±cych z mod_perla
+Summary(pl.UTF-8):   Pliki potrzebne do budowania moduÅ‚Ã³w XS korzystajÄ…cych z mod_perla
 Group:		Development/Libraries
 Requires:	apache-devel >= 2.0
 Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
@@ -218,19 +218,19 @@ Conflicts:	perl-modules < 1:5.8.6-6
 The apache-mod_perl-devel package contains the files needed for
 building XS modules that use mod_perl.
 
-%description devel -l pl
-Ten pakiet zawiera pliki potrzebne do budowania modu³ów XS
-korzystaj±cych z mod_perla.
+%description devel -l pl.UTF-8
+Ten pakiet zawiera pliki potrzebne do budowania moduÅ‚Ã³w XS
+korzystajÄ…cych z mod_perla.
 
 %package -n perl-mod_%{mod_name}
 Summary:	Perl APIs for mod_perl
-Summary(pl):	Perlowe API dla mod_perla
+Summary(pl.UTF-8):   Perlowe API dla mod_perla
 Group:		Development/Languages/Perl
 
 %description -n perl-mod_%{mod_name}
 Perl APIs for mod_perl.
 
-%description -n perl-mod_%{mod_name} -l pl
+%description -n perl-mod_%{mod_name} -l pl.UTF-8
 Perlowe API dla mod_perla.
 
 %prep
