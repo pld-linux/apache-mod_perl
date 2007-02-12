@@ -11,24 +11,24 @@
 # NB! leave this without *release*
 %define	apache_test_version	1.29
 Summary:	A Perl interpreter for the Apache Web server
-Summary(cs.UTF-8):   Vestavěný interpret Perlu pro WWW server Apache
-Summary(da.UTF-8):   En indbygget Perl-fortolker for webtjeneren Apache
-Summary(de.UTF-8):   Ein eingebetteter Perl-Interpreter für den Apache Web-Server
-Summary(es.UTF-8):   Intérprete Perl para el servidor Web Apache
-Summary(fr.UTF-8):   Interpréteur Perl intégré pour le serveur Web Apache
-Summary(id.UTF-8):   Interpreter Perl untuk web server Apache
-Summary(is.UTF-8):   Perl túlkur fyrir Apache vefþjóninn
-Summary(it.UTF-8):   Interprete Perl integrato per il server Web Apache
-Summary(ja.UTF-8):   Apache Web サーバー用の組込み Perl インタープリタ
-Summary(nb.UTF-8):   En Perl-fortolker for webtjeneren Apache
-Summary(pl.UTF-8):   Interpreter Perla dla serwera WWW Apache
-Summary(pt.UTF-8):   Um interpretador de Perl embebido para o servidor Web Apache
-Summary(ru.UTF-8):   Встроенный интерпретатор Perl для WWW-сервера Apache
-Summary(sk.UTF-8):   Interpreter jazyka Perl pre webový server Apache
-Summary(sl.UTF-8):   Vključeni perlovski tolmač za spletni strežnik Apache
-Summary(sv.UTF-8):   En inbyggd Perl-interpretator för webbservern Apache
-Summary(uk.UTF-8):   Модуль вбудовування інтерпретатора Perl в сервер Apache
-Summary(zh_CN.UTF-8):   用于 Apache web 服务程序的 Perl 解释程序。
+Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
+Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
+Summary(de.UTF-8):	Ein eingebetteter Perl-Interpreter für den Apache Web-Server
+Summary(es.UTF-8):	Intérprete Perl para el servidor Web Apache
+Summary(fr.UTF-8):	Interpréteur Perl intégré pour le serveur Web Apache
+Summary(id.UTF-8):	Interpreter Perl untuk web server Apache
+Summary(is.UTF-8):	Perl túlkur fyrir Apache vefþjóninn
+Summary(it.UTF-8):	Interprete Perl integrato per il server Web Apache
+Summary(ja.UTF-8):	Apache Web サーバー用の組込み Perl インタープリタ
+Summary(nb.UTF-8):	En Perl-fortolker for webtjeneren Apache
+Summary(pl.UTF-8):	Interpreter Perla dla serwera WWW Apache
+Summary(pt.UTF-8):	Um interpretador de Perl embebido para o servidor Web Apache
+Summary(ru.UTF-8):	Встроенный интерпретатор Perl для WWW-сервера Apache
+Summary(sk.UTF-8):	Interpreter jazyka Perl pre webový server Apache
+Summary(sl.UTF-8):	Vključeni perlovski tolmač za spletni strežnik Apache
+Summary(sv.UTF-8):	En inbyggd Perl-interpretator för webbservern Apache
+Summary(uk.UTF-8):	Модуль вбудовування інтерпретатора Perl в сервер Apache
+Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 Version:	2.0.3
 Release:	1
@@ -204,7 +204,7 @@ Apache web 服务程序， 并为 Apache 的 C 语言 API 提供面向对象的 
 
 %package devel
 Summary:	Files needed for building XS modules that use mod_perl
-Summary(pl.UTF-8):   Pliki potrzebne do budowania modułów XS korzystających z mod_perla
+Summary(pl.UTF-8):	Pliki potrzebne do budowania modułów XS korzystających z mod_perla
 Group:		Development/Libraries
 Requires:	apache-devel >= 2.0
 Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
@@ -224,7 +224,7 @@ korzystających z mod_perla.
 
 %package -n perl-mod_%{mod_name}
 Summary:	Perl APIs for mod_perl
-Summary(pl.UTF-8):   Perlowe API dla mod_perla
+Summary(pl.UTF-8):	Perlowe API dla mod_perla
 Group:		Development/Languages/Perl
 
 %description -n perl-mod_%{mod_name}
