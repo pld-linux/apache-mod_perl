@@ -31,7 +31,7 @@ Summary(uk):	íÏÄÕÌØ ×ÂÕÄÏ×Õ×ÁÎÎÑ ¦ÎÔÅÒÐÒÅÔÁÔÏÒÁ Perl × ÓÅÒ×ÅÒ Apache
 Summary(zh_CN):	ÓÃÓÚ Apache web ·þÎñ³ÌÐòµÄ Perl ½âÊÍ³ÌÐò¡£
 Name:		apache-mod_perl
 Version:	2.0.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -39,6 +39,7 @@ Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
 # Source0-md5:	b40e2adf67c6be15a0041af1c67b6997
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
+Patch1:		%{name}-path_info_secfix.patch
 URL:		http://perl.apache.org/
 BuildRequires:	apache-devel >= 2.0.55-1
 BuildRequires:	apr-util-devel >= 1:1.0.0
@@ -236,6 +237,7 @@ Perlowe API dla mod_perla.
 %prep
 %setup -q -n mod_%{mod_name}-%{version}
 %patch0 -p1
+%patch1 -p0
 
 bundled=$(%{__perl} -IApache-Test/lib -MApache::Test -e 'print Apache::Test->VERSION')
 if [ "%apache_test_version" != "$bundled" ]; then
