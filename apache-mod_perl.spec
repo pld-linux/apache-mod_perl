@@ -31,7 +31,7 @@ Summary(uk.UTF-8):	Модуль вбудовування інтерпретат�
 Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 Version:	2.0.3
-Release:	3
+Release:	4
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
