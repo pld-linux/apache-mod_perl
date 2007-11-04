@@ -1,6 +1,6 @@
---- mod_perl-1.16/Makefile.PL.rh	Fri Oct  2 18:50:15 1998
-+++ mod_perl-1.16/Makefile.PL	Mon Dec 21 11:51:46 1998
-@@ -244,6 +244,7 @@
+--- mod_perl-1.30/Makefile.PL.orig	2007-03-30 07:12:49.000000000 +0200
++++ mod_perl-1.30/Makefile.PL	2007-11-04 18:49:50.747251450 +0100
+@@ -300,6 +300,7 @@
  $callback_alias{PERL_CLEANUP} = "PERL_LOG";
  %callback_hooks = map { $_,0 } @callback_hooks;
  $callback_hooks{PERL_HANDLER} = 1; #PerlHandler always on
@@ -8,29 +8,12 @@
  %cant_hook = ();
  
  my @mm_args;
-@@ -317,11 +318,11 @@
- *          We recommend linking mod_perl static instead         *
- EOF
-     print "*" x 65, $/;
--    my $ans = prompt("Continue?", "n");
--    if($ans =~ /^n$/i) {
--        print "Aborting build process\n";
--        exit;
--    }
-+#    my $ans = prompt("Continue?", "n");
-+#    if($ans =~ /^n$/i) {
-+#        print "Aborting build process\n";
-+#        exit;
-+#    }
+@@ -476,7 +477,7 @@
  }
  
- if($USE_APXS) {
-@@ -356,7 +357,7 @@
- }
- 
- if($EVERYTHING) {
+ if ($EVERYTHING) {
 -    @callback_hooks{qw(PERL_STACKED_HANDLERS PERL_METHOD_HANDLERS)} = (1) x 2;
-+    @callback_hooks{qw(PERL_METHOD_HANDLERS)} = (1) x 2;
-     for(qw(ALL_HOOKS PERL_SSI PERL_SECTIONS PERL_DIRECTIVE_HANDLERS 
- 	   PERL_LOG_API PERL_URI_API PERL_UTIL_API PERL_TABLE_API PERL_FILE_API)) {
-        $$_ = 1;
++    @callback_hooks{qw(PERL_METHOD_HANDLERS)} = (1);
+     for (qw(
+            ALL_HOOKS PERL_SSI PERL_SECTIONS PERL_DIRECTIVE_HANDLERS
+            PERL_LOG_API PERL_URI_API PERL_UTIL_API PERL_TABLE_API PERL_FILE_API
