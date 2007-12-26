@@ -31,7 +31,7 @@ Summary(uk.UTF-8):	Модуль вбудовування інтерпретат�
 Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 Version:	2.0.3
-Release:	4
+Release:	5
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
@@ -70,8 +70,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # TODO: separate -devel with ExtUtils::Embed and friends?
 %define		_noautoreq	'perl(Apache::.*)' 'perl(mod_perl)' 'perl(ModPerl::.*)' 'perl(ExtUtils::Embed)' 'perl(Module::Build)'
-%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)
-%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
+%define		pkgconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)/conf.d
+%define		pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
 
 %description
 Mod_perl incorporates a Perl interpreter into the Apache web server,
@@ -263,7 +263,7 @@ rm -rf Apache-Test
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf}
+install -d $RPM_BUILD_ROOT{%{pkglibdir},%{pkgconfdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -277,7 +277,7 @@ rm -rf $RPM_BUILD_ROOT%{perl_vendorarch}/Bundle
 rm -f $RPM_BUILD_ROOT%{_mandir}/man?/Bundle*
 rm -f $RPM_BUILD_ROOT%{perl_archlib}/perllocal.pod
 rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/auto/mod_perl2/.packlist
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_mod_perl.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{pkgconfdir}/75_mod_perl.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -293,8 +293,8 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc Changes INSTALL README STATUS
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*.conf
-%attr(755,root,root) %{_pkglibdir}/*.so
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{pkgconfdir}/*.conf
+%attr(755,root,root) %{pkglibdir}/*.so
 
 %files -n perl-mod_%{mod_name}
 %defattr(644,root,root,755)
