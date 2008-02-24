@@ -30,8 +30,8 @@ Summary(sv.UTF-8):	En inbyggd Perl-interpretator för webbservern Apache
 Summary(uk.UTF-8):	Модуль вбудовування інтерпретатора Perl в сервер Apache
 Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
-Version:	2.0.4
-Release:	0
+Version:	2.0.3
+Release:	8
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
