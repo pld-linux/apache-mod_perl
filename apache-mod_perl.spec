@@ -8,8 +8,7 @@
 %include	/usr/lib/rpm/macros.perl
 %define		apxs	/usr/sbin/apxs
 %define		mod_name	perl
-# NB! leave this without *release*
-%define	apache_test_version	1.29
+
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
 Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -30,26 +29,23 @@ Summary(sv.UTF-8):	En inbyggd Perl-interpretator för webbservern Apache
 Summary(uk.UTF-8):	Модуль вбудовування інтерпретатора Perl в сервер Apache
 Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
-Version:	2.0.3
-Release:	9
+Version:	2.0.4
+Release:	1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-# Source0-md5:	b40e2adf67c6be15a0041af1c67b6997
+# Source0-md5:	1a05625ae6843085f985f5da8214502a
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 Patch1:		%{name}-path_info_secfix.patch
 Patch2:		%{name}-magic.patch
-Patch100:	%{name}-branch.diff
 URL:		http://perl.apache.org/
 BuildRequires:	apache-devel >= 2.0.55-1
 BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel >= 2.4.6
-BuildRequires:	patchutils
-BuildRequires:	perl-Apache-Test >= 1:%{apache_test_version}
 %{?with_autodeps:BuildRequires:	perl-Data-Flow}
 BuildRequires:	perl-devel >= 1:5.8.2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
@@ -212,7 +208,6 @@ Summary(pl.UTF-8):	Pliki potrzebne do budowania modułów XS korzystających z m
 Group:		Development/Libraries
 Requires:	apache-devel >= 2.0
 Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
-Requires:	perl-Apache-Test
 Requires:	perl-mod_%{mod_name} = %{epoch}:%{version}-%{release}
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
@@ -239,15 +234,7 @@ Perlowe API dla mod_perla.
 
 %prep
 %setup -q -n mod_%{mod_name}-%{version}
-cat %{PATCH100} | filterdiff -x t/apr-ext/perlio.t -x t/response/TestPerl/ithreads_eval.pm -x t/response/TestPerl/ithreads.pm -x t/protocol/eliza.t | patch -p0
 %patch0 -p1
-
-bundled=$(%{__perl} -IApache-Test/lib -MApache::Test -e 'print Apache::Test->VERSION')
-if [ "%apache_test_version" != "$bundled" ]; then
-	: "%%define apache_test_version to $bundled and retry."
-	exit 1
-fi
-rm -rf Apache-Test
 
 %build
 %{__perl} Makefile.PL \
@@ -321,3 +308,4 @@ fi
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/apache/*.h
+%{perl_vendorarch}/Apache/Test*
