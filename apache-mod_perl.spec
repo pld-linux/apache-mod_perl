@@ -239,6 +239,7 @@ Summary(pl.UTF-8):	Apache::Test - wrapper na Test.pm z funkcjami do testowania A
 Version:	1.31
 Group:		Development/Languages/Perl
 Requires:	perl-mod_perl = %{ver}-%{release}
+Requires:	perl-dirs >= 2.0-5
 
 %description -n perl-Apache-Test
 Apache::Test is a wrapper around the standard Test.pm with helpers for
@@ -333,6 +334,5 @@ fi
 
 %files -n perl-Apache-Test
 %defattr(644,root,root,755)
-%dir %{perl_vendorarch}/Apache
 %{perl_vendorarch}/Apache/Test*
 %{_mandir}/man3/Apache::Test*.3pm*
