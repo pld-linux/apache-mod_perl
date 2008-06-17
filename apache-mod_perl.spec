@@ -1,6 +1,5 @@
 # TODO:
 # - separate devel things from runtime things (apache-mod_perl-2.0.2-2 marks perl-ExtUtils-MakeMaker-6.25_08-1 (cap perl(ExtUtils::Install)))
-# - put perl-Apache-Test to subpkg
 #
 # Conditional build:
 %bcond_without	autodeps	# don't care about perl() deps resolving
@@ -30,7 +29,8 @@ Summary(sv.UTF-8):	En inbyggd Perl-interpretator för webbservern Apache
 Summary(uk.UTF-8):	Модуль вбудовування інтерпретатора Perl в сервер Apache
 Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
-Version:	2.0.4
+%define	ver	2.0.4
+Version:	%{ver}
 Release:	3
 Epoch:		1
 License:	Apache
@@ -233,6 +233,21 @@ Perl APIs for mod_perl.
 %description -n perl-mod_%{mod_name} -l pl.UTF-8
 Perlowe API dla mod_perla.
 
+%package -n perl-Apache-Test
+Summary:	Apache::Test - Test.pm wrapper with helpers for testing Apache
+Summary(pl.UTF-8):	Apache::Test - wrapper na Test.pm z funkcjami do testowania Apache
+Version:	1.31
+Group:		Development/Languages/Perl
+Requires:	perl-mod_perl = %{ver}-%{release}
+
+%description -n perl-Apache-Test
+Apache::Test is a wrapper around the standard Test.pm with helpers for
+testing an Apache server.
+
+%description -n perl-Apache-Test -l pl.UTF-8
+Apache::Test to moduł obudowujący standardowy Test.pm w funkcje
+pomocnicze do testowania serwera Apache.
+
 %prep
 %setup -q -n mod_%{mod_name}-%{version}
 %patch0 -p1
@@ -287,27 +302,37 @@ fi
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{apacheconfdir}/*.conf
 %attr(755,root,root) %{apachelibdir}/*.so
 
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/apache/mod_perl.h
+%{_includedir}/apache/modperl_*.h
+
 %files -n perl-mod_%{mod_name}
 %defattr(644,root,root,755)
-%{perl_vendorarch}/*.pm
+%{perl_vendorarch}/APR.pm
 %{perl_vendorarch}/APR
 %{perl_vendorarch}/Apache2
 %{perl_vendorarch}/ModPerl
-
-%dir %{perl_vendorarch}/auto/*
-%{perl_vendorarch}/auto/*/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/*/*.so
+%{perl_vendorarch}/mod_perl2.pm
+%dir %{perl_vendorarch}/auto/APR
+%{perl_vendorarch}/auto/APR/APR.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/APR/APR.so
 %dir %{perl_vendorarch}/auto/APR/[B-U]*
+%dir %{perl_vendorarch}/auto/Apache2
 %dir %{perl_vendorarch}/auto/Apache2/[A-U]*
+%{perl_vendorarch}/auto/Apache2/typemap
+%dir %{perl_vendorarch}/auto/ModPerl
 %dir %{perl_vendorarch}/auto/ModPerl/*
 %{perl_vendorarch}/auto/*/*/*.ix
 %{perl_vendorarch}/auto/*/*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/*/*/*.so
-%{perl_vendorarch}/auto/Apache2/typemap
-%{_mandir}/man?/*
+%{_mandir}/man3/APR*.3pm*
+%{_mandir}/man3/Apache2::*.3pm*
+%{_mandir}/man3/ModPerl::*.3pm*
+%{_mandir}/man3/mod_perl2.3pm*
 
-%files devel
+%files -n perl-Apache-Test
 %defattr(644,root,root,755)
-%{_includedir}/apache/*.h
 %dir %{perl_vendorarch}/Apache
 %{perl_vendorarch}/Apache/Test*
+%{_mandir}/man3/Apache::Test*.3pm*
