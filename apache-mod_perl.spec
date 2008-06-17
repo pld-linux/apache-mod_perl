@@ -208,8 +208,6 @@ Summary:	Files needed for building XS modules that use mod_perl
 Summary(pl.UTF-8):	Pliki potrzebne do budowania modułów XS korzystających z mod_perla
 Group:		Development/Libraries
 Requires:	apache-devel >= 2.0
-Requires:	perl(DynaLoader) = %(%{__perl} -MDynaLoader -e 'print DynaLoader->VERSION')
-Requires:	perl-mod_%{mod_name} = %{epoch}:%{version}-%{release}
 Obsoletes:	mod_perl
 Obsoletes:	mod_perl-common
 Conflicts:	perl-modules < 1:5.8.6-6
@@ -238,7 +236,7 @@ Summary:	Apache::Test - Test.pm wrapper with helpers for testing Apache
 Summary(pl.UTF-8):	Apache::Test - wrapper na Test.pm z funkcjami do testowania Apache
 Version:	1.31
 Group:		Development/Languages/Perl
-Requires:	perl-mod_perl = %{ver}-%{release}
+Requires:	perl-mod_%{mod_name} = %{epoch}:%{ver}-%{release}
 Requires:	perl-dirs >= 2.0-5
 
 %description -n perl-Apache-Test
@@ -250,7 +248,7 @@ Apache::Test to moduł obudowujący standardowy Test.pm w funkcje
 pomocnicze do testowania serwera Apache.
 
 %prep
-%setup -q -n mod_%{mod_name}-%{version}
+%setup -q -n mod_%{mod_name}-%{ver}
 %patch0 -p1
 
 %build
