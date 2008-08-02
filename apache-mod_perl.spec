@@ -270,7 +270,7 @@ pomocnicze do testowania serwera Apache.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{apachelibdir},%{apacheconfdir}}
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name \*.orig -exec rm -f '{}' \;
 
