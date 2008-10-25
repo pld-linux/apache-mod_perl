@@ -34,7 +34,7 @@ Version:	%{ver}
 Release:	3
 Epoch:		1
 License:	Apache
-Group:		Networking/Daemons
+Group:		Networking/Daemons/HTTP
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
 # Source0-md5:	1a05625ae6843085f985f5da8214502a
 Source1:	%{name}.conf
