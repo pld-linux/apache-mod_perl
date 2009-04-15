@@ -42,6 +42,9 @@ Patch0:		%{name}-Makefile_PL.patch
 Patch1:		%{name}-path_info_secfix.patch
 Patch2:		%{name}-magic.patch
 URL:		http://perl.apache.org/
+# Fix in svn:
+# http://svn.apache.org/viewvc/perl/modperl/trunk/lib/Apache2/Status.pm?view=log
+BuildRequires:	security(CVE-2009-0796)
 BuildRequires:	apache-devel >= 2.0.55-1
 BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
