@@ -31,7 +31,7 @@ Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 %define	ver	2.0.4
 Version:	%{ver}
-Release:	4
+Release:	5
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
@@ -39,12 +39,8 @@ Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
 # Source0-md5:	1a05625ae6843085f985f5da8214502a
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
-Patch1:		%{name}-path_info_secfix.patch
-Patch2:		%{name}-magic.patch
+Patch1:		%{name}-CVE-2009-0796.patch
 URL:		http://perl.apache.org/
-# Fix in svn:
-# http://svn.apache.org/viewvc/perl/modperl/trunk/lib/Apache2/Status.pm?view=log
-BuildRequires:	security(CVE-2009-0796)
 BuildRequires:	apache-devel >= 2.0.55-1
 BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
@@ -253,6 +249,7 @@ pomocnicze do testowania serwera Apache.
 %prep
 %setup -q -n mod_%{mod_name}-%{ver}
 %patch0 -p1
+%patch1 -p3
 
 %build
 %{__perl} Makefile.PL \
