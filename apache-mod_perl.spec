@@ -31,7 +31,7 @@ Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 %define	ver	2.0.4
 Version:	%{ver}
-Release:	5
+Release:	6
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
