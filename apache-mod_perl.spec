@@ -1,4 +1,5 @@
 # TODO:
+# - Apache-SizeLimit (0.95) conflicts with mod_perl1 - separate like Apache-Test?
 # - separate devel things from runtime things (apache-mod_perl-2.0.2-2 marks perl-ExtUtils-MakeMaker-6.25_08-1 (cap perl(ExtUtils::Install)))
 #
 # Conditional build:
@@ -29,17 +30,16 @@ Summary(sv.UTF-8):	En inbyggd Perl-interpretator för webbservern Apache
 Summary(uk.UTF-8):	Модуль вбудовування інтерпретатора Perl в сервер Apache
 Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
-%define	ver	2.0.4
+%define	ver	2.0.5
 Version:	%{ver}
-Release:	7
+Release:	1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
 Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-# Source0-md5:	1a05625ae6843085f985f5da8214502a
+# Source0-md5:	03d01d135a122bd8cebd0cd5b185d674
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
-Patch1:		%{name}-CVE-2009-0796.patch
 URL:		http://perl.apache.org/
 BuildRequires:	apache-devel >= 2.0.55-1
 BuildRequires:	apr-util-devel >= 1:1.0.0
@@ -233,7 +233,7 @@ Perlowe API dla mod_perla.
 %package -n perl-Apache-Test
 Summary:	Apache::Test - Test.pm wrapper with helpers for testing Apache
 Summary(pl.UTF-8):	Apache::Test - wrapper na Test.pm z funkcjami do testowania Apache
-Version:	1.31
+Version:	1.36
 Group:		Development/Languages/Perl
 Requires:	perl-mod_%{mod_name} = %{epoch}:%{ver}-%{release}
 Requires:	perl-dirs >= 2.0-5
@@ -249,7 +249,6 @@ pomocnicze do testowania serwera Apache.
 %prep
 %setup -q -n mod_%{mod_name}-%{ver}
 %patch0 -p1
-%patch1 -p3
 
 %build
 %{__perl} Makefile.PL \
@@ -278,10 +277,10 @@ install xs/tables/current/Apache2/* $RPM_BUILD_ROOT%{perl_vendorarch}/Apache2
 install xs/tables/current/APR/* $RPM_BUILD_ROOT%{perl_vendorarch}/APR
 install xs/tables/current/ModPerl/* $RPM_BUILD_ROOT%{perl_vendorarch}/ModPerl
 
-rm -rf $RPM_BUILD_ROOT%{perl_vendorarch}/Bundle
-rm -f $RPM_BUILD_ROOT%{_mandir}/man?/Bundle*
-rm -f $RPM_BUILD_ROOT%{perl_archlib}/perllocal.pod
-rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/auto/mod_perl2/.packlist
+%{__rm} -r $RPM_BUILD_ROOT%{perl_vendorarch}/Bundle
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man3/Bundle*
+%{__rm} $RPM_BUILD_ROOT%{perl_archlib}/perllocal.pod
+%{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/auto/mod_perl2/.packlist
 install %{SOURCE1} $RPM_BUILD_ROOT%{apacheconfdir}/75_mod_perl.conf
 
 %clean
@@ -298,8 +297,8 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc Changes INSTALL README STATUS
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{apacheconfdir}/*.conf
-%attr(755,root,root) %{apachelibdir}/*.so
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{apacheconfdir}/75_mod_perl.conf
+%attr(755,root,root) %{apachelibdir}/mod_perl.so
 
 %files devel
 %defattr(644,root,root,755)
@@ -310,6 +309,9 @@ fi
 %defattr(644,root,root,755)
 %{perl_vendorarch}/APR.pm
 %{perl_vendorarch}/APR
+%{perl_vendorarch}/Apache/Reload.pm
+%{perl_vendorarch}/Apache/SizeLimit.pm
+%{perl_vendorarch}/Apache/SizeLimit
 %{perl_vendorarch}/Apache2
 %{perl_vendorarch}/ModPerl
 %{perl_vendorarch}/mod_perl2.pm
@@ -317,15 +319,21 @@ fi
 %{perl_vendorarch}/auto/APR/APR.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/APR/APR.so
 %dir %{perl_vendorarch}/auto/APR/[B-U]*
+%{perl_vendorarch}/auto/APR/[B-U]*/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/APR/[B-U]*/*.so
 %dir %{perl_vendorarch}/auto/Apache2
 %dir %{perl_vendorarch}/auto/Apache2/[A-U]*
+%{perl_vendorarch}/auto/Apache2/Build/autosplit.ix
+%{perl_vendorarch}/auto/Apache2/[A-U]*/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/Apache2/[A-U]*/*.so
 %{perl_vendorarch}/auto/Apache2/typemap
 %dir %{perl_vendorarch}/auto/ModPerl
-%dir %{perl_vendorarch}/auto/ModPerl/*
-%{perl_vendorarch}/auto/*/*/*.ix
-%{perl_vendorarch}/auto/*/*/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/*/*/*.so
+%dir %{perl_vendorarch}/auto/ModPerl/[C-U]*
+%{perl_vendorarch}/auto/ModPerl/[C-U]*/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/ModPerl/[C-U]*/*.so
 %{_mandir}/man3/APR*.3pm*
+%{_mandir}/man3/Apache::Reload.3pm*
+%{_mandir}/man3/Apache::SizeLimit*.3pm*
 %{_mandir}/man3/Apache2::*.3pm*
 %{_mandir}/man3/ModPerl::*.3pm*
 %{_mandir}/man3/mod_perl2.3pm*
