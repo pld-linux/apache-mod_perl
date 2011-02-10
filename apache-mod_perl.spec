@@ -1,5 +1,4 @@
 # TODO:
-# - Apache-SizeLimit (0.95) conflicts with mod_perl1 - separate like Apache-Test?
 # - separate devel things from runtime things (apache-mod_perl-2.0.2-2 marks perl-ExtUtils-MakeMaker-6.25_08-1 (cap perl(ExtUtils::Install)))
 #
 # Conditional build:
@@ -277,11 +276,17 @@ install xs/tables/current/Apache2/* $RPM_BUILD_ROOT%{perl_vendorarch}/Apache2
 install xs/tables/current/APR/* $RPM_BUILD_ROOT%{perl_vendorarch}/APR
 install xs/tables/current/ModPerl/* $RPM_BUILD_ROOT%{perl_vendorarch}/ModPerl
 
+install %{SOURCE1} $RPM_BUILD_ROOT%{apacheconfdir}/75_mod_perl.conf
+
+# apache1-specific version - but mod_perl1 contains older Apache::SizeLimit which doesn't use shared Apache::SizeLimit::Core
+%{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/Apache/SizeLimit.pm \
+	$RPM_BUILD_ROOT%{_mandir}/man3/Apache::SizeLimit.3pm
+# don't package Bundle::*
 %{__rm} -r $RPM_BUILD_ROOT%{perl_vendorarch}/Bundle
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/man3/Bundle*
+# perl-specific cleanup
 %{__rm} $RPM_BUILD_ROOT%{perl_archlib}/perllocal.pod
 %{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/auto/mod_perl2/.packlist
-install %{SOURCE1} $RPM_BUILD_ROOT%{apacheconfdir}/75_mod_perl.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -310,7 +315,6 @@ fi
 %{perl_vendorarch}/APR.pm
 %{perl_vendorarch}/APR
 %{perl_vendorarch}/Apache/Reload.pm
-%{perl_vendorarch}/Apache/SizeLimit.pm
 %{perl_vendorarch}/Apache/SizeLimit
 %{perl_vendorarch}/Apache2
 %{perl_vendorarch}/ModPerl
@@ -333,7 +337,7 @@ fi
 %attr(755,root,root) %{perl_vendorarch}/auto/ModPerl/[C-U]*/*.so
 %{_mandir}/man3/APR*.3pm*
 %{_mandir}/man3/Apache::Reload.3pm*
-%{_mandir}/man3/Apache::SizeLimit*.3pm*
+%{_mandir}/man3/Apache::SizeLimit::Core.3pm*
 %{_mandir}/man3/Apache2::*.3pm*
 %{_mandir}/man3/ModPerl::*.3pm*
 %{_mandir}/man3/mod_perl2.3pm*
