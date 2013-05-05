@@ -29,14 +29,18 @@ Summary(sv.UTF-8):	En inbyggd Perl-interpretator för webbservern Apache
 Summary(uk.UTF-8):	Модуль вбудовування інтерпретатора Perl в сервер Apache
 Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
-%define	ver	2.0.6
+%define	ver	2.0.7
+%define	snap	svn1448242
 Version:	%{ver}
-Release:	3
+Release:	0.%{snap}.1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
-Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-# Source0-md5:	76f4154cffb15972246f03080e9d133c
+#Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
+# svn export -r 1448242 https://svn.apache.org/repos/asf/perl/modperl/branches/httpd24 mod_perl-2.0.7-svn1448242
+# tar czvf mod_perl-2.0.7-svn1448242.tar.gz mod_perl-2.0.7-svn1448242
+Source0:	mod_perl-%{version}-%{snap}.tar.gz
+# Source0-md5:	8b62bbfe8b499bc87b6d3d28eb765a24
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
@@ -246,7 +250,7 @@ Apache::Test to moduł obudowujący standardowy Test.pm w funkcje
 pomocnicze do testowania serwera Apache.
 
 %prep
-%setup -q -n mod_%{mod_name}-%{ver}
+%setup -q -n mod_%{mod_name}-%{ver}-%{snap}
 %patch0 -p1
 
 %build
