@@ -32,7 +32,7 @@ Name:		apache-mod_perl
 %define	ver	2.0.7
 %define	snap	svn1448242
 Version:	%{ver}
-Release:	0.%{snap}.2
+Release:	0.%{snap}.3
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
