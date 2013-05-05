@@ -51,7 +51,7 @@ BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel >= 2.4.6
 %{?with_autodeps:BuildRequires:	perl-Data-Flow}
 BuildRequires:	perl-devel >= 1:5.8.2
-BuildRequires:	perl-Module-CoreList
+BuildConflicts:	perl-Module-CoreList
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	rpmbuild(macros) >= 1.268
 %if %{with tests}
