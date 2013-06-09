@@ -9,6 +9,9 @@
 %define		apxs	/usr/sbin/apxs
 %define		mod_name	perl
 
+%define		ver	2.0.7
+%define		snap	svn1448242
+%define		rel	5
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
 Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -29,10 +32,8 @@ Summary(sv.UTF-8):	En inbyggd Perl-interpretator för webbservern Apache
 Summary(uk.UTF-8):	Модуль вбудовування інтерпретатора Perl в сервер Apache
 Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
-%define	ver	2.0.7
-%define	snap	svn1448242
 Version:	%{ver}
-Release:	0.%{snap}.4
+Release:	0.%{snap}.%{rel}
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
