@@ -32,7 +32,7 @@ Name:		apache-mod_perl
 %define	ver	2.0.7
 %define	snap	svn1448242
 Version:	%{ver}
-Release:	0.%{snap}.3
+Release:	0.%{snap}.4
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
@@ -50,8 +50,7 @@ BuildRequires:	expat-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel >= 2.4.6
 %{?with_autodeps:BuildRequires:	perl-Data-Flow}
-BuildRequires:	perl-devel >= 1:5.8.2
-BuildConflicts:	perl-Module-CoreList
+BuildRequires:	perl-devel >= 1:5.18.0
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	rpmbuild(macros) >= 1.268
 %if %{with tests}
