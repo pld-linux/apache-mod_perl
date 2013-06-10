@@ -11,7 +11,7 @@
 
 %define		ver	2.0.7
 %define		snap	svn1448242
-%define		rel	5
+%define		rel	6
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
 Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -44,6 +44,7 @@ Source0:	mod_perl-%{version}-%{snap}.tar.gz
 # Source0-md5:	8b62bbfe8b499bc87b6d3d28eb765a24
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
+Patch1:		perl-5.18.patch
 URL:		http://perl.apache.org/
 BuildRequires:	apache-devel >= 2.0.55-1
 BuildRequires:	apr-util-devel >= 1:1.0.0
@@ -253,6 +254,7 @@ pomocnicze do testowania serwera Apache.
 %prep
 %setup -q -n mod_%{mod_name}-%{ver}-%{snap}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__perl} Makefile.PL \
