@@ -11,7 +11,7 @@
 
 %define		ver	2.0.7
 %define		snap	svn1448242
-%define		rel	6
+%define		rel	7
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
 Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -70,6 +70,7 @@ BuildConflicts:	apache-mod_perl < 1:2.0.2-9
 Requires:	apache(modules-api) = %apache_modules_api
 Requires:	perl-mod_%{mod_name} = %{epoch}:%{version}-%{release}
 Provides:	apache(mod_perl)
+Obsoletes:	perl-Apache-Reload
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # TODO: separate -devel with ExtUtils::Embed and friends?
@@ -238,7 +239,7 @@ Perlowe API dla mod_perla.
 %package -n perl-Apache-Test
 Summary:	Apache::Test - Test.pm wrapper with helpers for testing Apache
 Summary(pl.UTF-8):	Apache::Test - wrapper na Test.pm z funkcjami do testowania Apache
-Version:	1.36
+Version:	1.37
 Group:		Development/Languages/Perl
 Requires:	perl-mod_%{mod_name} = %{epoch}:%{ver}-%{release}
 Requires:	perl-dirs >= 2.0-5
