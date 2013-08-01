@@ -11,7 +11,7 @@
 
 %define		ver	2.0.7
 %define		snap	svn1448242
-%define		rel	7
+%define		rel	7.1
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
 Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -265,8 +265,8 @@ pomocnicze do testowania serwera Apache.
 	INSTALLDIRS=vendor
 
 %{__make} \
-	OPTIMIZE="%{rpmcflags}" \
-	MODPERL_OPTIMIZE="%{rpmcflags}" \
+	OPTIMIZE="%{rpmcflags} -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64" \
+	MODPERL_OPTIMIZE="%{rpmcflags} -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64" \
 	CC="%{__cc}" \
 	MP_APXS=%{apxs}
 
