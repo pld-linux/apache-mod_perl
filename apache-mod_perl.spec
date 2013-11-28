@@ -11,7 +11,7 @@
 
 %define		ver	2.0.7
 %define		snap	svn1448242
-%define		rel	8
+%define		rel	9
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
 Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -54,7 +54,7 @@ BuildRequires:	openldap-devel >= 2.4.6
 %{?with_autodeps:BuildRequires:	perl-Data-Flow}
 BuildRequires:	perl-devel >= 1:5.18.0
 BuildRequires:	rpm-perlprov >= 3.0.3-16
-BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	rpmbuild(macros) >= 1.671
 %if %{with tests}
 BuildRequires:	apache-mod_auth_basic
 BuildRequires:	apache-mod_authz_host
@@ -67,8 +67,11 @@ BuildRequires:	perl-CGI >= 3.22
 %endif
 # older apache-mod_perl could make bad autodeps to perl-mod_perl
 BuildConflicts:	apache-mod_perl < 1:2.0.2-9
+Requires(post,preun,postun):	systemd-units >= 38
 Requires:	apache(modules-api) = %apache_modules_api
 Requires:	perl-mod_%{mod_name} = %{epoch}:%{version}-%{release}
+Requires:	rc-scripts
+Requires:	systemd-units >= 38
 Provides:	apache(mod_perl)
 Obsoletes:	perl-Apache-Reload
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -301,10 +304,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %service -q httpd restart
+%systemd_service_restart httpd.service
 
 %postun
 if [ "$1" = "0" ]; then
 	%service -q httpd restart
+	%systemd_service_restart httpd.service
 fi
 
 %files
