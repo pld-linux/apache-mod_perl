@@ -9,9 +9,9 @@
 %define		apxs	/usr/sbin/apxs
 %define		mod_name	perl
 
-%define		ver	2.0.7
-%define		snap	svn1448242
-%define		rel	9
+%define		ver	2.0.8
+%define		snap	svn1624218
+%define		rel	1
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
 Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -38,13 +38,12 @@ Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
 #Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-# svn export -r 1448242 https://svn.apache.org/repos/asf/perl/modperl/branches/httpd24 mod_perl-2.0.7-svn1448242
-# tar czvf mod_perl-2.0.7-svn1448242.tar.gz mod_perl-2.0.7-svn1448242
-Source0:	mod_perl-%{version}-%{snap}.tar.gz
-# Source0-md5:	8b62bbfe8b499bc87b6d3d28eb765a24
+# svn export -r 1624218 https://svn.apache.org/repos/asf/perl/modperl/branches/httpd24 mod_perl-2.0.8-svn1624218
+# tar cvf - mod_perl-2.0.8-svn1624218 | xz >mod_perl-2.0.8-svn1624218.tar.xz
+Source0:	mod_perl-%{version}-%{snap}.tar.xz
+# Source0-md5:	d9f3ec5b4d845c360cf5773f90980c81
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
-Patch1:		perl-5.18.patch
 URL:		http://perl.apache.org/
 BuildRequires:	apache-devel >= 2.0.55-1
 BuildRequires:	apr-util-devel >= 1:1.0.0
@@ -258,7 +257,6 @@ pomocnicze do testowania serwera Apache.
 %prep
 %setup -q -n mod_%{mod_name}-%{ver}-%{snap}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__perl} Makefile.PL \
