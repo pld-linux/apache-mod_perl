@@ -11,7 +11,7 @@
 
 %define		ver	2.0.8
 %define		snap	svn1624218
-%define		rel	1
+%define		rel	2
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
 Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -352,6 +352,7 @@ fi
 %files -n perl-Apache-Test
 %defattr(644,root,root,755)
 %{perl_vendorarch}/Apache/Test*
+%dir %{perl_vendorarch}/MyTest
 %{perl_vendorarch}/MyTest/Util.pm
 %{_mandir}/man3/Apache::Test*.3pm*
 %{_mandir}/man3/MyTest::Util.3pm*
