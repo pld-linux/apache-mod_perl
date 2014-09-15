@@ -331,20 +331,16 @@ fi
 %{perl_vendorarch}/ModPerl
 %{perl_vendorarch}/mod_perl2.pm
 %dir %{perl_vendorarch}/auto/APR
-%{perl_vendorarch}/auto/APR/APR.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/APR/APR.so
 %dir %{perl_vendorarch}/auto/APR/[B-U]*
-%{perl_vendorarch}/auto/APR/[B-U]*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/APR/[B-U]*/*.so
 %dir %{perl_vendorarch}/auto/Apache2
 %dir %{perl_vendorarch}/auto/Apache2/[A-U]*
 %{perl_vendorarch}/auto/Apache2/Build/autosplit.ix
-%{perl_vendorarch}/auto/Apache2/[A-U]*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/Apache2/[A-U]*/*.so
 %{perl_vendorarch}/auto/Apache2/typemap
 %dir %{perl_vendorarch}/auto/ModPerl
 %dir %{perl_vendorarch}/auto/ModPerl/[C-U]*
-%{perl_vendorarch}/auto/ModPerl/[C-U]*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/ModPerl/[C-U]*/*.so
 %{_mandir}/man3/APR*.3pm*
 %{_mandir}/man3/Apache::Reload.3pm*
@@ -356,4 +352,6 @@ fi
 %files -n perl-Apache-Test
 %defattr(644,root,root,755)
 %{perl_vendorarch}/Apache/Test*
+%{perl_vendorarch}/MyTest/Util.pm
 %{_mandir}/man3/Apache::Test*.3pm*
+%{_mandir}/man3/MyTest::Util.3pm*
