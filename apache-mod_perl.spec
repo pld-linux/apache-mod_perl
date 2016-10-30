@@ -11,7 +11,7 @@
 
 %define		ver	2.0.8
 %define		snap	svn1624218
-%define		rel	4
+%define		rel	5
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
 Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
