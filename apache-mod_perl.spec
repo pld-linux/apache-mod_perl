@@ -9,9 +9,7 @@
 %define		apxs	/usr/sbin/apxs
 %define		mod_name	perl
 
-%define		ver	2.0.8
-%define		snap	svn1624218
-%define		rel	7
+%define	ver	2.0.10
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
 Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -33,15 +31,12 @@ Summary(uk.UTF-8):	Модуль вбудовування інтерпретат�
 Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 Version:	%{ver}
-Release:	0.%{snap}.%{rel}
+Release:	1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
-#Source0:	http://perl.apache.org/dist/mod_perl-%{version}.tar.gz
-# svn export -r 1624218 https://svn.apache.org/repos/asf/perl/modperl/branches/httpd24 mod_perl-2.0.8-svn1624218
-# tar cvf - mod_perl-2.0.8-svn1624218 | xz >mod_perl-2.0.8-svn1624218.tar.xz
-Source0:	mod_perl-%{version}-%{snap}.tar.xz
-# Source0-md5:	d9f3ec5b4d845c360cf5773f90980c81
+Source0:	http://www.apache.org/dist/perl/mod_perl-%{ver}.tar.gz
+# Source0-md5:	cef55e715b5770a63b3becbe9d271121
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
@@ -241,7 +236,7 @@ Perlowe API dla mod_perla.
 %package -n perl-Apache-Test
 Summary:	Apache::Test - Test.pm wrapper with helpers for testing Apache
 Summary(pl.UTF-8):	Apache::Test - wrapper na Test.pm z funkcjami do testowania Apache
-Version:	1.37
+Version:	1.40
 Group:		Development/Languages/Perl
 Requires:	perl-mod_%{mod_name} = %{epoch}:%{ver}-%{release}
 Requires:	perl-dirs >= 2.0-5
@@ -255,7 +250,7 @@ Apache::Test to moduł obudowujący standardowy Test.pm w funkcje
 pomocnicze do testowania serwera Apache.
 
 %prep
-%setup -q -n mod_%{mod_name}-%{ver}-%{snap}
+%setup -q -n mod_%{mod_name}-%{ver}
 %patch0 -p1
 
 %build
@@ -352,7 +347,4 @@ fi
 %files -n perl-Apache-Test
 %defattr(644,root,root,755)
 %{perl_vendorarch}/Apache/Test*
-%dir %{perl_vendorarch}/MyTest
-%{perl_vendorarch}/MyTest/Util.pm
 %{_mandir}/man3/Apache::Test*.3pm*
-%{_mandir}/man3/MyTest::Util.3pm*
