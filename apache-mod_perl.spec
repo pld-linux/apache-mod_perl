@@ -7,7 +7,7 @@
 %define		apxs	/usr/sbin/apxs
 %define		mod_name	perl
 
-%define	ver	2.0.10
+%define	ver	2.0.11
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
 Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -29,12 +29,12 @@ Summary(uk.UTF-8):	Модуль вбудовування інтерпретат�
 Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 Version:	%{ver}
-Release:	3
+Release:	1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
-Source0:	http://www.apache.org/dist/perl/mod_perl-%{ver}.tar.gz
-# Source0-md5:	cef55e715b5770a63b3becbe9d271121
+Source0:	https://downloads.apache.org/perl/mod_perl-%{ver}.tar.gz
+# Source0-md5:	897708961bcc079b53c91860f95a2b59
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
 URL:		http://perl.apache.org/
