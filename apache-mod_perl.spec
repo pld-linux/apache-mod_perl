@@ -45,7 +45,7 @@ BuildRequires:	gdbm-devel
 BuildRequires:	openldap-devel >= 2.4.6
 BuildRequires:	perl-devel >= 1:5.18.0
 BuildRequires:	rpm-perlprov >= 3.0.3-16
-BuildRequires:	rpmbuild(macros) >= 1.671
+BuildRequires:	rpmbuild(macros) >= 1.745
 %if %{with tests}
 BuildRequires:	apache-mod_auth_basic
 BuildRequires:	apache-mod_authz_host
