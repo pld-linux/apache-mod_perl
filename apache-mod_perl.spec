@@ -29,7 +29,7 @@ Summary(uk.UTF-8):	Модуль вбудовування інтерпретат�
 Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 Version:	%{ver}
-Release:	3
+Release:	4
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
@@ -233,7 +233,7 @@ Perlowe API dla mod_perla.
 %package -n perl-Apache-Test
 Summary:	Apache::Test - Test.pm wrapper with helpers for testing Apache
 Summary(pl.UTF-8):	Apache::Test - wrapper na Test.pm z funkcjami do testowania Apache
-Version:	1.42
+Version:	1.43
 Group:		Development/Languages/Perl
 Requires:	perl-mod_%{mod_name} = %{epoch}:%{ver}-%{release}
 Requires:	perl-dirs >= 2.0-5
