@@ -64,7 +64,7 @@ Requires:	perl-mod_%{mod_name} = %{epoch}:%{version}-%{release}
 Requires:	rc-scripts
 Requires:	systemd-units >= 38
 Provides:	apache(mod_perl)
-Obsoletes:	perl-Apache-Reload
+Obsoletes:	perl-Apache-Reload < 0.12
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # TODO: separate -devel with ExtUtils::Embed and friends?
