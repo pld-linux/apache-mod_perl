@@ -7,7 +7,7 @@
 %define		apxs	/usr/sbin/apxs
 %define		mod_name	perl
 
-%define	ver	2.0.12
+%define	ver	2.0.13
 Summary:	A Perl interpreter for the Apache Web server
 Summary(cs.UTF-8):	Vestavěný interpret Perlu pro WWW server Apache
 Summary(da.UTF-8):	En indbygget Perl-fortolker for webtjeneren Apache
@@ -29,15 +29,15 @@ Summary(uk.UTF-8):	Модуль вбудовування інтерпретат�
 Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 Version:	%{ver}
-Release:	7
+Release:	1
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
 Source0:	https://downloads.apache.org/perl/mod_perl-%{ver}.tar.gz
-# Source0-md5:	1b4af8c30051d0767c818099c2a2a82e
+# Source0-md5:	b107c587ae16c7a9a59c344c01359253
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
-URL:		http://perl.apache.org/
+URL:		https://perl.apache.org/
 BuildRequires:	apache-devel >= 2.0.55-1
 BuildRequires:	apr-util-devel >= 1:1.0.0
 BuildRequires:	expat-devel
@@ -277,7 +277,7 @@ install xs/tables/current/Apache2/* $RPM_BUILD_ROOT%{perl_vendorarch}/Apache2
 install xs/tables/current/APR/* $RPM_BUILD_ROOT%{perl_vendorarch}/APR
 install xs/tables/current/ModPerl/* $RPM_BUILD_ROOT%{perl_vendorarch}/ModPerl
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{apacheconfdir}/75_mod_perl.conf
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{apacheconfdir}/75_mod_perl.conf
 
 # apache1-specific version - but mod_perl1 contains older Apache::SizeLimit which doesn't use shared Apache::SizeLimit::Core
 %{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/Apache/SizeLimit.pm \
