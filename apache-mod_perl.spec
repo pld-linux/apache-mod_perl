@@ -30,7 +30,7 @@ Summary(zh_CN.UTF-8):	用于 Apache web 服务程序的 Perl 解释程序。
 Name:		apache-mod_perl
 Version:	%{ver}
 # don't reset unless perl-Apache-Test version is also increased
-Release:	8
+Release:	9
 Epoch:		1
 License:	Apache
 Group:		Networking/Daemons/HTTP
