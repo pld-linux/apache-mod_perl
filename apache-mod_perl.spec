@@ -38,6 +38,7 @@ Source0:	https://downloads.apache.org/perl/mod_perl-%{ver}.tar.gz
 # Source0-md5:	b107c587ae16c7a9a59c344c01359253
 Source1:	%{name}.conf
 Patch0:		%{name}-Makefile_PL.patch
+Patch1:		types.patch
 URL:		https://perl.apache.org/
 BuildRequires:	apache-devel >= 2.0.55-1
 BuildRequires:	apr-util-devel >= 1:1.0.0
@@ -250,6 +251,7 @@ pomocnicze do testowania serwera Apache.
 %prep
 %setup -q -n mod_%{mod_name}-%{ver}
 %patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %{__perl} Makefile.PL \
